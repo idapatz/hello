@@ -79,16 +79,28 @@ const CheckIcon = styled.svg`
 const Skills = () => {
   const skills = [
     {
-      category: "Frontend",
-      items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML5/CSS3"]
+      category: "Business-Verständnis",
+      items: [
+        "Strategieentwicklung in der Energie- & KI-Branche",
+        "Produktentwicklung & MVP-Prozesse",
+        "Controlling, Positionierung, Zielplanung"
+      ]
     },
     {
-      category: "Tools & Methods",
-      items: ["Git", "Agile/Scrum", "Responsive Design", "UI/UX", "Testing"]
+      category: "Team & Führung",
+      items: [
+        "Teamaufbau (remote & vor Ort)",
+        "HR-Prozesse, Mitarbeitergespräche, Kulturformate",
+        "Meetingstrukturen & Kommunikation"
+      ]
     },
     {
-      category: "Soft Skills",
-      items: ["Teamarbeit", "Kommunikation", "Problemlösung", "Selbstständigkeit", "Lernbereitschaft"]
+      category: "Struktur & Umsetzung",
+      items: [
+        "Notion, Pipedrive, Google Workspace",
+        "Websiteaufbau, Tool-Landschaft, Kampagnenentwicklung",
+        "Workshops & Weiterbildungen mit Substanz"
+      ]
     }
   ];
 
