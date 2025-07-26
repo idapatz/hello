@@ -1,34 +1,50 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { Playfair_Display } from 'next/font/google';
-import styled, { keyframes } from 'styled-components';
+import { Playfair_Display, Dancing_Script } from 'next/font/google';
+import styled from 'styled-components';
 
-const playfair = Playfair_Display({ subsets: ['latin'] });
+const playfair = Playfair_Display({ 
+  subsets: ['latin'],
+  style: ['normal', 'italic']
+});
 
-const fadeIn = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
-`;
-
-const slideUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
+const dancingScript = Dancing_Script({ 
+  subsets: ['latin'] 
+});
 
 const HeroSection = styled.section`
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(to right, #fafaf9 50%, #f5f5f4 50%);
+  background-color: #1a1a1a;
+  position: relative;
   overflow: hidden;
+`;
+
+const LeafDecoration = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 100%;
+  background-image: url('/leaf.png');
+  background-size: cover;
+  background-position: left center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  pointer-events: none;
+`;
+
+const CircleDecoration = styled.div`
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
 `;
 
 const Container = styled.div`
@@ -37,188 +53,150 @@ const Container = styled.div`
   margin: 0 auto;
   padding: 2rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 40% 60%;
   gap: 4rem;
   align-items: center;
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     padding: 2rem;
-    gap: 2rem;
+    gap: 3rem;
   }
 `;
 
-const ContentLeft = styled.div`
-  max-width: 600px;
-  opacity: 0;
-  animation: ${fadeIn} 1s ease-out forwards;
-  animation-delay: 0.3s;
+const ImageColumn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 60vh;
+  max-height: 600px;
+  width: 70%;
+  margin: 0 auto;
 
   @media (max-width: 1024px) {
-    max-width: 100%;
-    text-align: center;
+    height: 40vh;
+    max-height: 400px;
+    width: 80%;
   }
+`;
+
+const ContentColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 60vh;
+  max-height: 600px;
+  padding: 0;
+  width: 70%;
+  margin-left: 0;
+
+  @media (max-width: 1024px) {
+    height: 40vh;
+    max-height: 400px;
+    width: 80%;
+    margin: 0 auto;
+  }
+`;
+
+const StyledImage = styled(Image)`
+  object-fit: cover;
+  border-radius: 0;
+  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+`;
+
+const Category = styled.div`
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffffff;
 `;
 
 const MainHeading = styled.h1`
   font-size: 4rem;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-  color: #1a1a1a;
+  line-height: 1.2;
+  color: #ffffff;
+  margin: 1rem 0;
 
   @media (max-width: 768px) {
     font-size: 3rem;
   }
 `;
 
-const Highlight = styled.span`
-  display: block;
-  color: #064e3b; // Waldgrün
-  margin-top: 0.5rem;
-  font-size: 0.9em;
-`;
-
-const SublineContainer = styled.div`
-  opacity: 0;
-  animation: ${slideUp} 1s ease-out forwards;
-  animation-delay: 0.6s;
-  margin: 2rem 0;
-`;
-
-const Subline = styled.p`
+const Description = styled.p`
   font-size: 1.25rem;
-  line-height: 1.6;
-  color: #4a4a4a;
-  margin-bottom: 2rem;
+  line-height: 1.8;
+  color: #9ca3af;
 
   @media (max-width: 768px) {
     font-size: 1.125rem;
   }
 `;
 
-const CTAButton = styled.button`
-  display: inline-flex;
+const CTAContainer = styled.div`
+  display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0.75rem 1.5rem;
-  background: transparent;
-  border: 2px solid #064e3b;
-  color: #064e3b;
-  font-size: 1.125rem;
-  font-weight: 500;
-  border-radius: 4px;
-  cursor: pointer;
+  align-self: stretch;
+`;
+
+const CTALine = styled.div`
+  height: 1px;
+  flex-grow: 1;
+  background: linear-gradient(to right, #ffffff, #ffffff);
+`;
+
+const CTALink = styled.a`
+  font-family: ${dancingScript.style.fontFamily};
+  font-size: 2rem;
+  color: #ffffff;
+  text-decoration: none;
   transition: all 0.3s ease;
+  white-space: nowrap;
 
   &:hover {
-    background: #064e3b;
-    color: white;
+    color: #3b82f6;
     transform: translateY(-2px);
-  }
-
-  svg {
-    transition: transform 0.3s ease;
-  }
-
-  &:hover svg {
-    transform: translateX(5px);
-  }
-`;
-
-const ImageContainer = styled.div`
-  position: relative;
-  height: 80vh;
-  max-height: 800px;
-  opacity: 0;
-  animation: ${fadeIn} 1s ease-out forwards;
-  animation-delay: 0.9s;
-
-  @media (max-width: 1024px) {
-    height: 50vh;
-    max-height: 500px;
-    width: 100%;
-  }
-`;
-
-const StyledImage = styled(Image)`
-  object-fit: cover;
-  border-radius: 20px;
-  transition: transform 1.5s ease;
-
-  &:hover {
-    transform: scale(1.03);
   }
 `;
 
 const Hero = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const { top } = sectionRef.current.getBoundingClientRect();
-        const opacity = 1 - Math.max(0, -top / window.innerHeight);
-        sectionRef.current.style.opacity = opacity.toString();
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <HeroSection>
-      <Container ref={sectionRef}>
-        <ContentLeft>
-          <MainHeading className={playfair.className}>
-            Ich baue Unternehmen mit Haltung.
-            <Highlight>Klar. Digital. Menschlich.</Highlight>
-          </MainHeading>
-
-          <SublineContainer>
-            <Subline>
-              Als Founder in Residence will ich mit euch gestalten, was Zukunft trägt:
-              <br />
-              KI mit Sinn. Geschäftsmodelle mit Wirkung. Und Strukturen, die bleiben.
-            </Subline>
-
-            <CTAButton onClick={() => scrollToSection('skills')}>
-              Was ich mitbringe
-              <svg 
-                width="24" 
-                height="24" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2"
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="M5 12h14m-6-6l6 6-6 6"/>
-              </svg>
-            </CTAButton>
-          </SublineContainer>
-        </ContentLeft>
-
-        <ImageContainer>
+      <LeafDecoration />
+      <CircleDecoration />
+      <Container>
+        <ImageColumn>
           <StyledImage
-            src="/ida.jpg"
+            src="/ida.JPG"
             alt="Ida Patzelt"
             fill
             priority
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width: 768px) 100vw, 40vw"
           />
-        </ImageContainer>
+        </ImageColumn>
+        <ContentColumn>
+          <Category>
+            Klar. Digital. Menschlich.
+          </Category>
+          <MainHeading className={`${playfair.className}`}>
+            Ich baue Unternehmen mit Haltung.
+          </MainHeading>
+          <Description>
+            Als Founder in Residence will ich mit euch gestalten, was Zukunft trägt:
+            KI mit Sinn. Geschäftsmodelle mit Wirkung. Und Strukturen, die bleiben.
+          </Description>
+          <CTAContainer>
+            <CTALine />
+            <CTALink href="#contact">
+              get in touch
+            </CTALink>
+          </CTAContainer>
+        </ContentColumn>
       </Container>
     </HeroSection>
   );
 };
 
-export default Hero; 
+export default Hero;
