@@ -2,35 +2,36 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import { Playfair_Display } from 'next/font/google';
+
+const playfair = Playfair_Display({ 
+  subsets: ['latin'],
+  style: ['normal', 'italic']
+});
 
 const Section = styled.section`
-  padding: 5rem 0;
-  background-color: #f9fafb;
+  padding: 8rem 0;
+  background-color: #1a1a1a;
+  position: relative;
+  overflow: hidden;
 `;
 
 const Container = styled.div`
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 1rem;
-
-  @media (min-width: 640px) {
-    padding: 0 1.5rem;
-  }
-
-  @media (min-width: 1024px) {
-    padding: 0 2rem;
-  }
+  padding: 0 2rem;
 `;
 
 const Title = styled.h2`
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
   text-align: center;
-  color: #1a1a1a;
-  margin-bottom: 3rem;
+  color: #ffffff;
+  margin-bottom: 4rem;
+  font-family: ${playfair.className};
 
   @media (min-width: 768px) {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 `;
 
@@ -40,39 +41,49 @@ const Grid = styled.div`
   
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
   }
 `;
 
 const Card = styled.div`
-  background: white;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  }
 `;
 
 const CardTitle = styled.h3`
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 1rem;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  font-family: ${playfair.className};
 `;
 
 const SkillList = styled.ul`
-  space-y: 0.5rem;
+  space-y: 1rem;
 `;
 
 const SkillItem = styled.li`
   display: flex;
   align-items: center;
-  color: #4a4a4a;
+  color: #9ca3af;
   font-size: 1.125rem;
+  line-height: 1.8;
 `;
 
 const CheckIcon = styled.svg`
   width: 1.25rem;
   height: 1.25rem;
-  color: #065f46;
-  margin-right: 0.5rem;
+  color: #3b82f6;
+  margin-right: 1rem;
   flex-shrink: 0;
 `;
 

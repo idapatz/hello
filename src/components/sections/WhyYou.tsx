@@ -2,35 +2,36 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import { Playfair_Display } from 'next/font/google';
+
+const playfair = Playfair_Display({ 
+  subsets: ['latin'],
+  style: ['normal', 'italic']
+});
 
 const Section = styled.section`
-  padding: 5rem 0;
-  background-color: #f0f9ff;
+  padding: 8rem 0;
+  background-color: #1a1a1a;
+  position: relative;
+  overflow: hidden;
 `;
 
 const Container = styled.div`
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 1rem;
-
-  @media (min-width: 640px) {
-    padding: 0 1.5rem;
-  }
-
-  @media (min-width: 1024px) {
-    padding: 0 2rem;
-  }
+  padding: 0 2rem;
 `;
 
 const Title = styled.h2`
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
   text-align: center;
-  color: #1a1a1a;
-  margin-bottom: 3rem;
+  color: #ffffff;
+  margin-bottom: 4rem;
+  font-family: ${playfair.className};
 
   @media (min-width: 768px) {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 `;
 
@@ -40,24 +41,32 @@ const Content = styled.div`
 `;
 
 const Card = styled.div`
-  background: white;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 3rem;
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  }
 `;
 
 const Text = styled.p`
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.8;
-  color: #4a4a4a;
-  margin-bottom: 1.5rem;
+  color: #9ca3af;
+  margin-bottom: 2rem;
 
   &:last-child {
     margin-bottom: 0;
   }
 
-  @media (min-width: 768px) {
-    font-size: 1.25rem;
+  strong {
+    color: #ffffff;
+    font-family: ${playfair.className};
   }
 `;
 
@@ -72,15 +81,15 @@ const WhyYou = () => {
           <Card>
             <Text>
               Ich habe selten eine Sprache in einem Unternehmen gefunden, die so klar benennt, was oft nur gefühlt wird:
-              Dass Wirtschaft Verantwortung trägt. Und dass Technologie nur dann wirkt, wenn Menschen darin ihren Platz finden.
+              Dass <strong>Wirtschaft Verantwortung trägt</strong>. Und dass <strong>Technologie nur dann wirkt, wenn Menschen darin ihren Platz finden</strong>.
             </Text>
             <Text>
-              Lesharo spricht von Bindung, Wirkung, Substanz.
+              Lesharo spricht von <strong>Bindung, Wirkung, Substanz</strong>.
               Genau das reizt mich.
             </Text>
             <Text>
               Ich will keine Systeme bauen, die gut aussehen, aber nichts halten.
-              Ich will mit Menschen arbeiten, die Klarheit nicht für Schwäche halten.
+              Ich will mit Menschen arbeiten, die <strong>Klarheit nicht für Schwäche halten</strong>.
             </Text>
             <Text>
               Deshalb glaube ich: Das, was ihr aufbauen wollt kann mit dem, was ich mitbringe, richtig gut werden.

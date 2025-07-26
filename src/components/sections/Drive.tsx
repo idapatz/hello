@@ -3,28 +3,61 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import React, { useRef } from 'react';
 import styled from 'styled-components';
+import { Playfair_Display } from 'next/font/google';
+import Image from 'next/image';
+
+const playfair = Playfair_Display({ 
+  subsets: ['latin'],
+  style: ['normal', 'italic']
+});
+
+const CompassContainer = styled.div`
+  position: absolute;
+  top: -250px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 500px;
+  z-index: 10;
+
+  @media (min-width: 768px) {
+    width: 800px;
+    height: 800px;
+    top: -400px;
+  }
+`;
+
+const Title = styled.h2`
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1b1a15;
+  margin-bottom: 4rem;
+  font-family: ${playfair.className};
+  text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 4rem;
+  }
+`;
 
 const Section = styled.section`
   padding: 8rem 0;
-  background-color: #ffffff;
+  background-color: #afaca5;
   overflow: hidden;
   position: relative;
+  margin-top: 250px;
+
+  @media (min-width: 768px) {
+    margin-top: 400px;
+  }
 `;
 
 const Container = styled.div`
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
   position: relative;
   z-index: 1;
-
-  @media (min-width: 640px) {
-    padding: 0 1.5rem;
-  }
-
-  @media (min-width: 1024px) {
-    padding: 0 2rem;
-  }
 `;
 
 const Grid = styled.div`
@@ -39,9 +72,9 @@ const Grid = styled.div`
 `;
 
 const TextContent = styled.div`
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.8;
-  color: #1a1a1a;
+  color: #1b1a15;
   max-width: 600px;
 
   p {
@@ -50,10 +83,6 @@ const TextContent = styled.div`
     &:last-child {
       margin-bottom: 0;
     }
-  }
-
-  @media (min-width: 768px) {
-    font-size: 1.25rem;
   }
 `;
 
@@ -73,13 +102,14 @@ const KeywordsContainer = styled(motion.div)`
 const Keyword = styled(motion.div)`
   font-size: 2rem;
   font-weight: 500;
-  color: #1a1a1a;
+  color: #1b1a15;
   position: absolute;
   width: 100%;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: ${playfair.className};
   
   &::after {
     content: '';
@@ -100,8 +130,9 @@ const Keyword = styled(motion.div)`
 const HighlightedText = styled(motion.span)`
   position: relative;
   display: inline-block;
-  color: #1a1a1a;
+  color: #1b1a15;
   font-weight: 500;
+  font-family: ${playfair.className};
   
   &::after {
     content: '';
@@ -110,7 +141,7 @@ const HighlightedText = styled(motion.span)`
     bottom: -2px;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, #1a1a1a 0%, rgba(26,26,26,0.3) 100%);
+    background: linear-gradient(90deg, #1b1a15 0%, rgba(27,26,21,0.3) 100%);
     transform-origin: left;
   }
 `;
@@ -137,7 +168,17 @@ const Drive = () => {
 
   return (
     <Section id="drive" ref={containerRef}>
+      <CompassContainer>
+        <Image
+          src="/innere Kompass.png"
+          alt="Innerer Kompass"
+          fill
+          style={{ objectFit: 'contain' }}
+          priority
+        />
+      </CompassContainer>
       <Container>
+        <Title>Innerer Kompass</Title>
         <Grid>
           <TextContent>
             <motion.p
