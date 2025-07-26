@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import WorkTimeline from './WorkTimeline';
 
 const Section = styled.section`
   padding: 5rem 0;
@@ -87,21 +88,6 @@ const Description = styled.div`
 `;
 
 const Resume = () => {
-  const experiences = [
-    {
-      period: "2020 - Heute",
-      title: "Frontend Entwicklerin",
-      company: "Beispiel GmbH",
-      description: "Entwicklung moderner Webanwendungen mit React und Next.js"
-    },
-    {
-      period: "2018 - 2020",
-      title: "Junior Webentwicklerin",
-      company: "Tech AG",
-      description: "Frontend-Entwicklung und UI/UX-Design"
-    }
-  ];
-
   const education = [
     {
       period: "2015 - 2018",
@@ -126,16 +112,7 @@ const Resume = () => {
         <Content>
           <Section2>
             <SectionTitle>Berufserfahrung</SectionTitle>
-            <Timeline>
-              {experiences.map((exp, index) => (
-                <TimelineItem key={index} color="#065f46">
-                  <Period color="#065f46">{exp.period}</Period>
-                  <ItemTitle>{exp.title}</ItemTitle>
-                  <Institution>{exp.company}</Institution>
-                  <Description>{exp.description}</Description>
-                </TimelineItem>
-              ))}
-            </Timeline>
+            <WorkTimeline />
           </Section2>
 
           <Section2>
