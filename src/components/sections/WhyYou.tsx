@@ -71,14 +71,20 @@ const WhyYou = () => {
         <Content>
           <Card>
             <Text>
-              Ihre innovative Unternehmenskultur und der Fokus auf moderne Technologien haben mich sofort begeistert. 
-              Die Möglichkeit, an herausfordernden Projekten zu arbeiten und dabei Teil eines dynamischen Teams zu sein, 
-              entspricht genau meinen Vorstellungen von einem idealen Arbeitsumfeld.
+              Ich habe selten eine Sprache in einem Unternehmen gefunden, die so klar benennt, was oft nur gefühlt wird:
+              Dass Wirtschaft Verantwortung trägt. Und dass Technologie nur dann wirkt, wenn Menschen darin ihren Platz finden.
             </Text>
             <Text>
-              Besonders fasziniert mich Ihr Engagement für [spezifische Aspekte des Unternehmens]. 
-              Ich bin überzeugt, dass meine Erfahrungen und Fähigkeiten einen wertvollen Beitrag zu Ihrem Team leisten können, 
-              während ich gleichzeitig die Chance habe, mich weiterzuentwickeln und zu wachsen.
+              Lesharo spricht von Bindung, Wirkung, Substanz.
+              Genau das reizt mich.
+            </Text>
+            <Text>
+              Ich will keine Systeme bauen, die gut aussehen, aber nichts halten.
+              Ich will mit Menschen arbeiten, die Klarheit nicht für Schwäche halten.
+            </Text>
+            <Text>
+              Deshalb glaube ich: Das, was ihr aufbauen wollt kann mit dem, was ich mitbringe, richtig gut werden.
+              Und ich würde gerne mit euch herausfinden, wie.
             </Text>
           </Card>
         </Content>
