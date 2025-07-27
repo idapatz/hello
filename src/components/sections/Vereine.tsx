@@ -21,13 +21,15 @@ const VereinSection = styled.section`
 const Container = styled.div`
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0;
   position: relative;
   z-index: 1;
+  display: flex;
+  justify-content: center;
 `;
 
 const Title = styled.h2`
-  font-size: 48px;
+  font-size: 60px;
   font-weight: 400;
   font-family: "Instrument Serif", serif;
   font-style: normal;
@@ -41,60 +43,58 @@ const Title = styled.h2`
   padding: 0 15%;
 
   @media (min-width: 768px) {
-    font-size: 48px;
+    font-size: 60px;
   }
 
   @media (max-width: 767px) {
     padding: 0 2rem;
     margin-bottom: 2rem;
-    font-size: 36px;
+    font-size: 44px;
   }
 `;
 
 const VereinGrid = styled.div`
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15%;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3rem 6rem;
+  justify-content: center;
+  justify-items: center;
   
-  /* First row - spans 2 columns each */
+  /* First row - 3 logos */
   & > div:nth-child(1) {
-    grid-column: 1 / 3;
+    grid-column: 2;
   }
   
   & > div:nth-child(2) {
-    grid-column: 3 / 5;
+    grid-column: 4;
   }
   
   & > div:nth-child(3) {
-    grid-column: 5 / 7;
+    grid-column: 6;
   }
   
-  /* Second row - offset and spans 2 columns each */
+  /* Second row - 2 logos */
   & > div:nth-child(4) {
-    grid-column: 2 / 4;
+    grid-column: 3;
   }
   
   & > div:nth-child(5) {
-    grid-column: 4 / 6;
+    grid-column: 5;
   }
   
   @media (max-width: 767px) {
     padding: 0 2rem;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 1.5rem;
     
     /* Reset grid positioning for mobile */
-    & > div:nth-child(1),
-    & > div:nth-child(2),
-    & > div:nth-child(3),
-    & > div:nth-child(4),
-    & > div:nth-child(5) {
-      grid-column: 1;
-      justify-self: stretch;
+    & > div {
+      grid-column: unset !important;
     }
   }
 `;
@@ -110,7 +110,7 @@ const VereinCard = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 200px;
+  min-height: 250px;
   
   &:hover {
     background: transparent;
@@ -128,8 +128,8 @@ const VereinCard = styled(motion.div)`
 `;
 
 const LogoContainer = styled.div`
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
   position: relative;
   margin-bottom: 1.5rem;
   display: flex;
@@ -232,59 +232,46 @@ const Vereine = () => {
   return (
     <VereinSection>
       <Container>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <Title></Title>
-        </motion.div>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-        >
-          <VereinGrid>
-            {vereine.map((verein, index) => (
-              <VereinCard
-                key={index}
-                variants={cardVariants}
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.2 }}
+        <VereinGrid>
+          {vereine.map((verein, index) => (
+            <VereinCard
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+            >
+              <a
+                href={verein.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ 
+                  textDecoration: 'none', 
+                  color: 'inherit',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  width: '100%',
+                  height: '100%'
+                }}
               >
-                <a
-                  href={verein.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ 
-                    textDecoration: 'none', 
-                    color: 'inherit',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    width: '100%',
-                    height: '100%'
-                  }}
-                >
-                  <LogoContainer>
-                    <Image
-                      src={verein.logo}
-                      alt={`${verein.name} Logo`}
-                      fill
-                      style={{ 
-                        objectFit: 'contain',
-                        borderRadius: '4px'
-                      }}
-                    />
-                  </LogoContainer>
-                  <VereinName>{verein.name}</VereinName>
-                </a>
-              </VereinCard>
-            ))}
-          </VereinGrid>
-        </motion.div>
+                <LogoContainer>
+                  <Image
+                    src={verein.logo}
+                    alt={`${verein.name} Logo`}
+                    fill
+                    style={{ 
+                      objectFit: 'contain',
+                      borderRadius: '4px'
+                    }}
+                  />
+                </LogoContainer>
+                <VereinName>{verein.name}</VereinName>
+              </a>
+            </VereinCard>
+          ))}
+        </VereinGrid>
       </Container>
     </VereinSection>
   );

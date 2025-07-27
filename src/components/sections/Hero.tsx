@@ -40,11 +40,12 @@ const Container = styled.div`
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   display: grid;
   grid-template-columns: 40% 60%;
   gap: 4rem;
   align-items: center;
+  justify-content: center;
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
@@ -90,7 +91,7 @@ const ContentColumn = styled.div`
 
 const StyledImage = styled(Image)`
   object-fit: cover;
-  border-radius: 0;
+  border-radius: 1rem;
   box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
 `;
 
@@ -104,8 +105,8 @@ const Category = styled.div`
 `;
 
 const MainHeading = styled.h1`
-  font-size: 4rem;
-  line-height: 1.2;
+  font-size: 6rem;
+  line-height: 1.1;
   color: #f9fffb;
   margin: 1rem 0;
   font-family: "Instrument Serif", serif;
@@ -113,7 +114,7 @@ const MainHeading = styled.h1`
   font-style: normal;
 
   @media (max-width: 768px) {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 `;
 

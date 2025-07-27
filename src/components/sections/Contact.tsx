@@ -10,10 +10,14 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const Section = styled.section`
-  padding: 5rem 0;
+  padding: 6rem 0;
   background-color: #f3efea;
   position: relative;
   z-index: 10;
+
+  @media (max-width: 768px) {
+    padding: 4rem 0;
+  }
 `;
 
 const Container = styled.div`
@@ -31,7 +35,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 2.5rem;
+  font-size: 96px;
   font-weight: 400;
   text-align: center;
   color: #1a1a1a;
@@ -39,8 +43,8 @@ const Title = styled.h2`
   font-family: "Instrument Serif", serif;
   font-style: normal;
 
-  @media (min-width: 768px) {
-    font-size: 3rem;
+  @media (max-width: 768px) {
+    font-size: 64px;
   }
 `;
 

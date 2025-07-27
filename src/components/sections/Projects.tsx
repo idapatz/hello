@@ -10,92 +10,161 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const Section = styled.section`
-  padding: 8rem 0;
+  padding: 1rem 0 8rem 0;
   background-color: #f3efea;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   z-index: 10;
+
+  @media (max-width: 768px) {
+    padding: 1rem 0 6rem 0;
+  }
 `;
 
 const Container = styled.div`
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0;
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Title = styled.h2`
-  font-size: 48px;
+  font-size: 96px;
   font-weight: 400;
   font-family: "Instrument Serif", serif;
   font-style: normal;
   color: #68675f;
-  margin-bottom: 4rem;
   text-align: left;
-  max-width: 600px;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto 4rem;
-  padding: 0 15%;
+  margin: 0 auto 3rem;
+  padding: 0;
+  align-self: flex-start;
+  margin-left: 6rem;
 
   @media (min-width: 768px) {
-    font-size: 48px;
+    font-size: 96px;
+    margin-left: 6rem;
   }
 
   @media (max-width: 767px) {
     padding: 0 2rem;
     margin-bottom: 2rem;
-    font-size: 36px;
+    margin-left: 3rem;
+    font-size: 64px;
   }
 `;
 
 const ProjectsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 3rem;
-  row-gap: 6rem; // Größerer vertikaler Abstand zwischen den Reihen
+  gap: 5rem;
+  row-gap: 8rem;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 0 2rem 0;
   
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
-    gap: 4rem; // Angepasster Abstand für mobile Ansicht
+    gap: 6rem;
+    padding: 0 2rem 2rem 2rem;
   }
 `;
 
 const ProjectCard = styled.div`
-  background: #28352c;
-  padding: 2.5rem;
-  border: 1px solid rgba(249, 255, 251, 0.1);
-  box-shadow: 0 10px 30px rgba(40, 53, 44, 0.2);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  height: 100%; // Damit alle Cards gleich hoch sind
+  background-image: linear-gradient(
+    145deg,
+    rgba(40, 53, 44, 0.85),
+    rgba(40, 53, 44, 0.65)
+  ), url('/Background Hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 3.5rem 3.5rem 0.5rem 3.5rem;
+  border-radius: 2rem;
+  box-shadow: 
+    20px 20px 60px rgba(32, 42, 35, 0.5),
+    -20px -20px 60px rgba(55, 122, 75, 0.2),
+    inset 2px 2px 4px rgba(55, 122, 75, 0.1),
+    inset -2px -2px 4px rgba(32, 42, 35, 0.15);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  height: 100%;
   color: #f9fffb;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      145deg,
+      rgba(55, 122, 75, 0.1),
+      rgba(32, 42, 35, 0.05)
+    );
+    border-radius: 2rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    border-radius: 2rem;
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.02)
+    );
+    pointer-events: none;
+  }
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(40, 53, 44, 0.3);
-    background: #2d3b31;
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 
+      25px 25px 75px rgba(32, 42, 35, 0.6),
+      -25px -25px 75px rgba(55, 122, 75, 0.25),
+      inset 2px 2px 4px rgba(55, 122, 75, 0.1),
+      inset -2px -2px 4px rgba(32, 42, 35, 0.15);
+
+    &::before {
+      opacity: 1;
+    }
   }
 `;
 
 const ProjectHeader = styled.div`
-  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
 `;
 
 const ProjectTitle = styled.h3`
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 400;
   color: #f9fffb;
-  font-family: ${instrumentSerif.className};
+  font-family: "Instrument Serif", serif;
+  font-style: normal;
   line-height: 1.3;
   margin: 0;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+  }
 `;
 
 const ProjectMainTitle = styled.span`
@@ -142,11 +211,11 @@ const ProjectLink = styled.a`
 `;
 
 const ProjectMeta = styled.div`
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
 `;
 
 const MetaItem = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   color: #f9fffb;
   font-family: "Raleway", sans-serif;
   
@@ -160,12 +229,15 @@ const MetaLabel = styled.span`
   display: block;
   margin-bottom: 0.25rem;
   color: #d6fea1;
+  font-family: "Raleway", sans-serif;
 `;
 
 const MetaText = styled.span`
   font-size: 1rem;
   line-height: 1.6;
   color: #f9fffb;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
 `;
 
 const ProjectContent = styled.div`
@@ -185,6 +257,7 @@ const ContentItem = styled.li`
   margin-bottom: 0.75rem;
   color: #f9fffb;
   font-family: "Raleway", sans-serif;
+  font-weight: 400;
   font-size: 1rem;
   line-height: 1.6;
   
@@ -194,11 +267,12 @@ const ContentItem = styled.li`
 `;
 
 const USP = styled.div`
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
   border-top: 1px solid rgba(249, 255, 251, 0.1);
   color: #f9fffb;
   font-family: "Raleway", sans-serif;
+  font-weight: 400;
   font-size: 1rem;
   line-height: 1.6;
 `;
@@ -271,7 +345,7 @@ const Projects = () => {
             <ProjectCard key={index}>
               <ProjectHeader>
                 <ProjectTitle>
-                  <ProjectMainTitle>{project.title}</ProjectMainTitle>
+                  <ProjectMainTitle>{project.project}</ProjectMainTitle>
                   <ProjectLink href={project.link} target="_blank" rel="noopener noreferrer">
                     <span>{project.company}</span>
                   </ProjectLink>
@@ -279,10 +353,6 @@ const Projects = () => {
               </ProjectHeader>
               
               <ProjectMeta>
-                <MetaItem>
-                  <MetaLabel>Projekt</MetaLabel>
-                  <MetaText>{project.project}</MetaText>
-                </MetaItem>
                 <MetaItem>
                   <MetaLabel>Rolle</MetaLabel>
                   <MetaText>{project.role}</MetaText>
