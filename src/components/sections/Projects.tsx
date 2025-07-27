@@ -283,7 +283,7 @@ const Projects = () => {
       title: "Automatisierung weitergedacht",
       company: "Distart",
       link: "https://www.distart.de/",
-      project: "Aufbau eines beruflichen Weiterbildungsmoduls zu KI-Automatisierung",
+      project: "Entwicklung einer beruflichen Weiterbildung zu Automatisierungen",
       role: "Konzeption, Inhalte, Didaktik & Umsetzung",
       achievements: [
         "Entwicklung der inhaltlichen Struktur & Lernziele",

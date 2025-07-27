@@ -151,7 +151,7 @@ const CTALink = styled.a`
 
   &:hover {
     background: #d6fea1;
-    color: #000000;
+    color: #3f5645;
     transform: translateY(-2px);
   }
 `;

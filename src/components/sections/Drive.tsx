@@ -149,7 +149,7 @@ const LeftTextContent = styled(TextContent)`
 `;
 
 const RightTextContent = styled(TextContent)`
-  margin-top: 10rem;  // Erhöht für exakte Ausrichtung
+  margin-top: 11rem;  // Feinere Justierung für perfekte Ausrichtung
 
   @media (max-width: 767px) {
     margin-top: 0;
