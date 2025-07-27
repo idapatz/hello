@@ -169,6 +169,20 @@ const HighlightText = styled.div`
   }
 `;
 
+const Title = styled.h2`
+  font-size: 3rem;
+  font-weight: 400;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 4rem;
+  font-family: "Instrument Serif", serif;
+  font-style: normal;
+
+  @media (min-width: 768px) {
+    font-size: 4rem;
+  }
+`;
+
 const Projects = () => {
   const projects = [
     {
@@ -213,6 +227,7 @@ const Projects = () => {
   return (
     <Section id="projects">
       <Container>
+        <Title>Meine Projekte</Title>
         <Grid>
           <Sidebar>
             <SidebarTitle>Projekte</SidebarTitle>

@@ -2,6 +2,12 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import { Instrument_Serif } from 'next/font/google';
+
+const instrumentSerif = Instrument_Serif({ 
+  weight: '400',
+  subsets: ['latin']
+});
 
 const Section = styled.section`
   padding: 5rem 0;
@@ -24,10 +30,12 @@ const Container = styled.div`
 
 const Title = styled.h2`
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 400;
   text-align: center;
   color: #1a1a1a;
   margin-bottom: 3rem;
+  font-family: "Instrument Serif", serif;
+  font-style: normal;
 
   @media (min-width: 768px) {
     font-size: 3rem;
@@ -60,6 +68,7 @@ const Label = styled.label`
   font-weight: 500;
   color: #1a1a1a;
   margin-bottom: 0.5rem;
+  font-family: "Raleway", sans-serif;
 `;
 
 const Input = styled.input`
@@ -69,6 +78,8 @@ const Input = styled.input`
   border-radius: 0.5rem;
   font-size: 1rem;
   transition: all 0.2s;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
 
   &:focus {
     outline: none;
@@ -86,6 +97,8 @@ const Textarea = styled.textarea`
   transition: all 0.2s;
   resize: vertical;
   min-height: 8rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
 
   &:focus {
     outline: none;
@@ -103,6 +116,7 @@ const Button = styled.button`
   font-weight: 600;
   border-radius: 0.5rem;
   transition: background-color 0.2s;
+  font-family: "Raleway", sans-serif;
 
   &:hover {
     background-color: #064e3b;
@@ -119,6 +133,7 @@ const DirectContactTitle = styled.h3`
   font-weight: 600;
   color: #1a1a1a;
   margin-bottom: 1rem;
+  font-family: "Raleway", sans-serif;
 `;
 
 const ContactList = styled.div`
@@ -129,6 +144,8 @@ const ContactList = styled.div`
 
 const ContactItem = styled.p`
   color: #4a4a4a;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
 `;
 
 const ContactLink = styled.a`

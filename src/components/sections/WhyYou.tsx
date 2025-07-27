@@ -2,11 +2,11 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { Playfair_Display } from 'next/font/google';
+import { Instrument_Serif } from 'next/font/google';
 
-const playfair = Playfair_Display({ 
-  subsets: ['latin'],
-  style: ['normal', 'italic']
+const instrumentSerif = Instrument_Serif({ 
+  weight: '400',
+  subsets: ['latin']
 });
 
 const Section = styled.section`
@@ -24,11 +24,12 @@ const Container = styled.div`
 
 const Title = styled.h2`
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 400;
   text-align: center;
   color: #ffffff;
   margin-bottom: 4rem;
-  font-family: ${playfair.className};
+  font-family: "Instrument Serif", serif;
+  font-style: normal;
 
   @media (min-width: 768px) {
     font-size: 4rem;
@@ -59,6 +60,8 @@ const Text = styled.p`
   line-height: 1.8;
   color: #9ca3af;
   margin-bottom: 2rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
 
   &:last-child {
     margin-bottom: 0;
@@ -66,7 +69,8 @@ const Text = styled.p`
 
   strong {
     color: #ffffff;
-    font-family: ${playfair.className};
+    font-family: "Raleway", sans-serif;
+    font-weight: 600;
   }
 `;
 

@@ -2,12 +2,12 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Playfair_Display, Dancing_Script } from 'next/font/google';
+import { Instrument_Serif, Dancing_Script } from 'next/font/google';
 import styled from 'styled-components';
 
-const playfair = Playfair_Display({ 
-  subsets: ['latin'],
-  style: ['normal', 'italic']
+const instrumentSerif = Instrument_Serif({ 
+  weight: '400',
+  subsets: ['latin']
 });
 
 const dancingScript = Dancing_Script({ 
@@ -94,14 +94,18 @@ const Category = styled.div`
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #f9fffb;
+  font-family: "Raleway", sans-serif;
 `;
 
 const MainHeading = styled.h1`
   font-size: 4rem;
   line-height: 1.2;
-  color: #ffffff;
+  color: #f9fffb;
   margin: 1rem 0;
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-style: normal;
 
   @media (max-width: 768px) {
     font-size: 3rem;
@@ -111,7 +115,9 @@ const MainHeading = styled.h1`
 const Description = styled.p`
   font-size: 1.25rem;
   line-height: 1.8;
-  color: #9ca3af;
+  color: #f9fffb;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
 
   @media (max-width: 768px) {
     font-size: 1.125rem;
@@ -135,6 +141,7 @@ const CTALink = styled.a`
   padding: 0.8rem 1.5rem;
   border: 1px solid #d6fea1;
   background: transparent;
+  font-family: "Raleway", sans-serif;
 
   &:hover {
     background: #d6fea1;
@@ -160,7 +167,7 @@ const Hero = () => {
           <Category>
             Klar. Digital. Menschlich.
           </Category>
-          <MainHeading className={`${playfair.className}`}>
+          <MainHeading>
             Ich baue Unternehmen mit Haltung.
           </MainHeading>
           <Description>

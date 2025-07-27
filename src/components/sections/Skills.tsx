@@ -2,11 +2,11 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { Playfair_Display } from 'next/font/google';
+import { Instrument_Serif } from 'next/font/google';
 
-const playfair = Playfair_Display({ 
-  subsets: ['latin'],
-  style: ['normal', 'italic']
+const instrumentSerif = Instrument_Serif({ 
+  weight: '400',
+  subsets: ['latin']
 });
 
 const Section = styled.section`
@@ -24,11 +24,12 @@ const Container = styled.div`
 
 const Title = styled.h2`
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 400;
   text-align: center;
   color: #ffffff;
   margin-bottom: 4rem;
-  font-family: ${playfair.className};
+  font-family: "Instrument Serif", serif;
+  font-style: normal;
 
   @media (min-width: 768px) {
     font-size: 4rem;
@@ -64,7 +65,7 @@ const CardTitle = styled.h3`
   font-weight: 600;
   color: #ffffff;
   margin-bottom: 1.5rem;
-  font-family: ${playfair.className};
+  font-family: "Raleway", sans-serif;
 `;
 
 const SkillList = styled.ul`
@@ -77,6 +78,8 @@ const SkillItem = styled.li`
   color: #9ca3af;
   font-size: 1.125rem;
   line-height: 1.8;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
 `;
 
 const CheckIcon = styled.svg`
@@ -154,4 +157,4 @@ const Skills = () => {
   );
 };
 
-export default Skills; 
+export default Skills;
