@@ -21,17 +21,14 @@ const Section = styled.section`
 `;
 
 const Container = styled.div`
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 1rem;
-
-  @media (min-width: 640px) {
-    padding: 0 1.5rem;
-  }
-
-  @media (min-width: 1024px) {
-    padding: 0 2rem;
-  }
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Title = styled.h2`
@@ -51,6 +48,7 @@ const Title = styled.h2`
 const Content = styled.div`
   max-width: 32rem;
   margin: 0 auto;
+  width: 100%;
 `;
 
 const Form = styled.form`

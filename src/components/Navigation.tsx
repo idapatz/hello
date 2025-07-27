@@ -48,7 +48,7 @@ const NavContainer = styled.div`
 `;
 
 const Logo = styled(motion.div)`
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-instrument);
   font-size: 1.5rem;
   font-weight: 400;
   color: #f9fffb;
@@ -90,7 +90,7 @@ const NavItem = styled.li`
 `;
 
 const NavLink = styled(motion.a)`
-  font-family: "Raleway", sans-serif;
+  font-family: var(--font-raleway);
   font-size: 0.875rem;
   font-weight: 500;
   color: #f9fffb;
@@ -142,6 +142,7 @@ const MenuLine = styled(motion.div)`
 `;
 
 const CTAButton = styled(motion.a)`
+  font-family: var(--font-raleway);
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -152,7 +153,6 @@ const CTAButton = styled(motion.a)`
   padding: 0.8rem 1.5rem;
   border: 1px solid #d6fea1;
   background: transparent;
-  font-family: "Raleway", sans-serif;
   cursor: pointer;
 
   &:hover {

@@ -5,34 +5,26 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 const Title = styled.h2`
+  font-family: var(--font-instrument);
   font-size: 96px;
   font-weight: 400;
-  font-family: "Instrument Serif", serif;
   font-style: normal;
   color: #68675f;
   text-align: left;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto 3rem;
+  margin: 0 0 4rem -2rem;
   padding: 0;
-  align-self: flex-start;
-  margin-left: -2rem;
-
-  @media (min-width: 768px) {
-    font-size: 96px;
-    margin-left: -2rem;
-  }
 
   @media (max-width: 767px) {
-    padding: 0 2rem;
-    margin-bottom: 2rem;
-    margin-left: 0;
     font-size: 64px;
+    margin: 0 0 3rem 0;
+    padding: 0;
   }
 `;
 
 const Section = styled.section`
-  padding: 6rem 0 1rem 0;
+  padding: 8rem 0;
   background-color: #f3efea;
   overflow: hidden;
   position: relative;
@@ -40,14 +32,14 @@ const Section = styled.section`
   min-height: 100vh;
 
   @media (max-width: 768px) {
-    padding: 4rem 0 1rem 0;
+    padding: 6rem 0;
   }
 `;
 
 const Container = styled.div`
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 2rem;
   position: relative;
   z-index: 1;
   display: flex;
@@ -82,12 +74,6 @@ const Grid = styled.div`
   @media (max-width: 968px) {
     grid-template-columns: 1fr;
     gap: 3rem;
-    padding: 0 2rem;
-  }
-  
-  @media (max-width: 767px) {
-    padding: 0 2rem;
-    gap: 2rem;
   }
 `;
 
@@ -100,23 +86,13 @@ const RightColumn = styled.div`
 `;
 
 const TextContent = styled.div`
+  font-family: var(--font-raleway);
   font-size: 1.25rem;
   line-height: 1.8;
   color: #68675f;
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
-  padding-left: 2rem;
 
-  @media (max-width: 767px) {
-    padding-left: 0;
-  }
-
-  p {
-    margin-bottom: 2rem;
-    
-    &:last-child {
-      margin-bottom: 0;
-    }
+  @media (max-width: 768px) {
+    font-size: 1.125rem;
   }
 `;
 
@@ -149,7 +125,7 @@ const LeftTextContent = styled(TextContent)`
 `;
 
 const RightTextContent = styled(TextContent)`
-  margin-top: 11rem;  // Feinere Justierung für perfekte Ausrichtung
+  margin-top: 11rem;
 
   @media (max-width: 767px) {
     margin-top: 0;

@@ -8,12 +8,14 @@ const instrumentSerif = Instrument_Serif({
   weight: '400',
   subsets: ['latin'],
   display: 'swap',
+  variable: '--font-instrument',
 })
 
 const raleway = Raleway({ 
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-raleway',
+  weight: ['400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -27,13 +29,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="de" className={`${raleway.variable}`}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-      </head>
-      <body className={instrumentSerif.className}>
+    <html lang="de" className={`${instrumentSerif.variable} ${raleway.variable}`}>
+      <body>
         <StyledComponentsRegistry>
           <Navigation />
           {children}

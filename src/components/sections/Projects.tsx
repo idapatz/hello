@@ -10,21 +10,21 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const Section = styled.section`
-  padding: 1rem 0 8rem 0;
+  padding: 8rem 0;
   background-color: #f3efea;
   position: relative;
   overflow: visible;
   z-index: 10;
 
   @media (max-width: 768px) {
-    padding: 1rem 0 6rem 0;
+    padding: 6rem 0;
   }
 `;
 
 const Container = styled.div`
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 2rem;
   position: relative;
   z-index: 1;
   display: flex;
@@ -33,29 +33,21 @@ const Container = styled.div`
 `;
 
 const Title = styled.h2`
+  font-family: var(--font-instrument);
   font-size: 96px;
   font-weight: 400;
-  font-family: "Instrument Serif", serif;
   font-style: normal;
   color: #68675f;
   text-align: left;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto 3rem;
+  margin: 0 0 4rem -2rem;
   padding: 0;
-  align-self: flex-start;
-  margin-left: 6rem;
-
-  @media (min-width: 768px) {
-    font-size: 96px;
-    margin-left: 6rem;
-  }
 
   @media (max-width: 767px) {
-    padding: 0 2rem;
-    margin-bottom: 2rem;
-    margin-left: 3rem;
     font-size: 64px;
+    margin: 0 0 3rem 0;
+    padding: 0;
   }
 `;
 
@@ -67,12 +59,11 @@ const ProjectsGrid = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 0 2rem 0;
+  padding: 0;
   
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     gap: 6rem;
-    padding: 0 2rem 2rem 2rem;
   }
 `;
 
@@ -85,7 +76,7 @@ const ProjectCard = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 3.5rem 3.5rem 0.5rem 3.5rem;
+  padding: 3.5rem;
   border-radius: 2rem;
   box-shadow: 
     20px 20px 60px rgba(32, 42, 35, 0.5),
@@ -151,12 +142,12 @@ const ProjectHeader = styled.div`
 `;
 
 const ProjectTitle = styled.h3`
+  font-family: var(--font-instrument);
   font-size: 2rem;
   font-weight: 400;
-  color: #f9fffb;
-  font-family: "Instrument Serif", serif;
   font-style: normal;
   line-height: 1.3;
+  color: #f9fffb;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -217,7 +208,7 @@ const ProjectMeta = styled.div`
 const MetaItem = styled.div`
   margin-bottom: 2rem;
   color: #f9fffb;
-  font-family: "Raleway", sans-serif;
+  font-family: var(--font-raleway);
   
   &:last-child {
     margin-bottom: 0;
@@ -225,18 +216,18 @@ const MetaItem = styled.div`
 `;
 
 const MetaLabel = styled.span`
+  font-family: var(--font-raleway);
   font-weight: 500;
   display: block;
   margin-bottom: 0.25rem;
   color: #d6fea1;
-  font-family: "Raleway", sans-serif;
 `;
 
 const MetaText = styled.span`
+  font-family: var(--font-raleway);
   font-size: 1rem;
   line-height: 1.6;
   color: #f9fffb;
-  font-family: "Raleway", sans-serif;
   font-weight: 400;
 `;
 
@@ -256,7 +247,7 @@ const ContentItem = styled.li`
   gap: 0.75rem;
   margin-bottom: 0.75rem;
   color: #f9fffb;
-  font-family: "Raleway", sans-serif;
+  font-family: var(--font-raleway);
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.6;
@@ -271,7 +262,7 @@ const USP = styled.div`
   padding-top: 1rem;
   border-top: 1px solid rgba(249, 255, 251, 0.1);
   color: #f9fffb;
-  font-family: "Raleway", sans-serif;
+  font-family: var(--font-raleway);
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.6;

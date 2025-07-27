@@ -40,7 +40,7 @@ const Container = styled.div`
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 2rem;
   display: grid;
   grid-template-columns: 40% 60%;
   gap: 4rem;
@@ -49,7 +49,6 @@ const Container = styled.div`
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
-    padding: 2rem;
     gap: 3rem;
   }
 `;
@@ -74,18 +73,13 @@ const ImageColumn = styled.div`
 const ContentColumn = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 60vh;
-  max-height: 600px;
-  padding: 0;
-  width: 70%;
-  margin-left: 0;
+  gap: 2rem;
+  width: 100%;
+  max-width: 800px;
 
   @media (max-width: 1024px) {
-    height: 40vh;
-    max-height: 400px;
-    width: 80%;
-    margin: 0 auto;
+    text-align: center;
+    align-items: center;
   }
 `;
 
@@ -96,20 +90,20 @@ const StyledImage = styled(Image)`
 `;
 
 const Category = styled.div`
+  font-family: var(--font-raleway);
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #f9fffb;
-  font-family: "Raleway", sans-serif;
 `;
 
 const MainHeading = styled.h1`
+  font-family: var(--font-instrument);
   font-size: 6rem;
   line-height: 1.1;
   color: #f9fffb;
-  margin: 1rem 0;
-  font-family: "Instrument Serif", serif;
+  margin: 0;
   font-weight: 400;
   font-style: normal;
 
@@ -119,11 +113,11 @@ const MainHeading = styled.h1`
 `;
 
 const Description = styled.p`
+  font-family: var(--font-raleway);
   font-size: 1.25rem;
   line-height: 1.8;
   color: #f9fffb;
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
+  margin: 0;
 
   @media (max-width: 768px) {
     font-size: 1.125rem;
@@ -133,7 +127,11 @@ const Description = styled.p`
 const CTAContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  
+  @media (max-width: 1024px) {
+    justify-content: center;
+  }
 `;
 
 const CTALink = styled.a`

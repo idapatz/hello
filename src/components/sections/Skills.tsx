@@ -27,72 +27,35 @@ const PalmAccent = styled.div`
   }
 `;
 
-const Section = styled.section`
-  padding: 6rem 0;
-  background-color: #f3efea;
-  position: relative;
-  overflow: hidden;
-  z-index: 10;
-  margin-top: 100vh;
-
-  @media (max-width: 768px) {
-    padding: 4rem 0;
-  }
-`;
-
-const Container = styled.div`
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0;
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 const Title = styled.h2`
+  font-family: var(--font-instrument);
   font-size: 96px;
   font-weight: 400;
-  font-family: "Instrument Serif", serif;
   font-style: normal;
   color: #68675f;
   text-align: left;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto 1.5rem;
+  margin: 0 0 4rem -2rem;
   padding: 0;
-  align-self: flex-start;
-  margin-left: 6rem;
-
-  @media (min-width: 768px) {
-    font-size: 96px;
-    margin-left: 6rem;
-  }
 
   @media (max-width: 767px) {
-    padding: 0 2rem;
-    margin-bottom: 1rem;
-    margin-left: 3rem;
     font-size: 64px;
+    margin: 0 0 3rem 0;
+    padding: 0;
   }
 `;
 
 const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0;
-  display: grid;
-  gap: 4rem;
   
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5rem;
-  }
-  
-  @media (max-width: 767px) {
-    padding: 0 2rem;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
     gap: 3rem;
   }
 `;
@@ -163,17 +126,16 @@ const Card = styled.div`
 `;
 
 const CardTitle = styled.h3`
+  font-family: var(--font-instrument);
   font-size: 2rem;
   font-weight: 400;
-  color: #68675f;
-  margin-bottom: 2rem;
-  font-family: "Instrument Serif", serif;
   font-style: normal;
-  line-height: 1.3;
-  
-  @media (max-width: 767px) {
+  color: #28352c;
+  margin: 0 0 2rem 0;
+
+  @media (max-width: 768px) {
     font-size: 1.75rem;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.5rem 0;
   }
 `;
 
@@ -184,17 +146,20 @@ const SkillList = styled.ul`
 `;
 
 const SkillItem = styled.li`
-  display: flex;
-  align-items: flex-start;
-  color: #68675f;
+  font-family: var(--font-raleway);
   font-size: 1.25rem;
   line-height: 1.6;
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
-  margin-bottom: 1.5rem;
-  
+  color: #28352c;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
   &:last-child {
     margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.125rem;
   }
 `;
 
@@ -229,6 +194,29 @@ const CheckIcon = styled.div`
     font-weight: 600;
     z-index: 1;
   }
+`;
+
+const Section = styled.section`
+  padding: 8rem 0;
+  background-color: #f3efea;
+  position: relative;
+  z-index: 10;
+  margin-top: 100vh;
+
+  @media (max-width: 768px) {
+    padding: 6rem 0;
+  }
+`;
+
+const Container = styled.div`
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Skills = () => {
