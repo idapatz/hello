@@ -16,14 +16,19 @@ const dancingScript = Dancing_Script({
 
 const HeroSection = styled.section`
   min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   overflow: hidden;
   background-image: url('/Background Hero.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  z-index: 1;
   
   & > * {
     position: relative;

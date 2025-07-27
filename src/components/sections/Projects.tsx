@@ -14,6 +14,7 @@ const Section = styled.section`
   background-color: #f3efea;
   position: relative;
   overflow: hidden;
+  z-index: 10;
 `;
 
 const Container = styled.div`

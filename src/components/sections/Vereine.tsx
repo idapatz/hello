@@ -15,6 +15,7 @@ const VereinSection = styled.section`
   background-color: #f3efea;
   overflow: hidden;
   position: relative;
+  z-index: 10;
 `;
 
 const Container = styled.div`

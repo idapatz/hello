@@ -52,7 +52,9 @@ const Section = styled.section`
   background-color: #f3efea;
   overflow: hidden;
   position: relative;
-  margin-top: 0;
+  margin-top: 100vh;
+  z-index: 10;
+  min-height: 100vh;
 `;
 
 const Container = styled.div`
