@@ -18,33 +18,17 @@ const HeroSection = styled.section`
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background-color: #1a1a1a;
   position: relative;
   overflow: hidden;
-`;
-
-const LeafDecoration = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 25%;
-  height: 100%;
-  background-image: url('/leaf.png');
+  background-image: url('/Background Hero.png');
   background-size: cover;
-  background-position: left center;
+  background-position: center;
   background-repeat: no-repeat;
-  opacity: 1;
-  pointer-events: none;
-`;
-
-const CircleDecoration = styled.div`
-  position: absolute;
-  bottom: -100px;
-  right: -100px;
-  width: 300px;
-  height: 300px;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
+  
+  & > * {
+    position: relative;
+    z-index: 2;
+  }
 `;
 
 const Container = styled.div`
@@ -137,26 +121,24 @@ const Description = styled.p`
 const CTAContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
-  align-self: stretch;
-`;
-
-const CTALine = styled.div`
-  height: 1px;
-  flex-grow: 1;
-  background: linear-gradient(to right, #ffffff, #ffffff);
+  margin-top: 2rem;
 `;
 
 const CTALink = styled.a`
-  font-family: ${dancingScript.style.fontFamily};
-  font-size: 2rem;
-  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #d6fea1;
   text-decoration: none;
   transition: all 0.3s ease;
-  white-space: nowrap;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid #d6fea1;
+  background: transparent;
 
   &:hover {
-    color: #3b82f6;
+    background: #d6fea1;
+    color: #000000;
     transform: translateY(-2px);
   }
 `;
@@ -164,12 +146,10 @@ const CTALink = styled.a`
 const Hero = () => {
   return (
     <HeroSection>
-      <LeafDecoration />
-      <CircleDecoration />
       <Container>
         <ImageColumn>
           <StyledImage
-            src="/ida.JPG"
+            src="/Profil.png"
             alt="Ida Patzelt"
             fill
             priority
@@ -188,7 +168,6 @@ const Hero = () => {
             KI mit Sinn. Geschäftsmodelle mit Wirkung. Und Strukturen, die bleiben.
           </Description>
           <CTAContainer>
-            <CTALine />
             <CTALink href="#contact">
               get in touch
             </CTALink>
