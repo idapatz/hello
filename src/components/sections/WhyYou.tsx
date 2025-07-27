@@ -11,7 +11,7 @@ const instrumentSerif = Instrument_Serif({
 
 const Section = styled.section`
   padding: 8rem 0;
-  background-color: #1a1a1a;
+  background-color: #f3efea;
   position: relative;
   overflow: hidden;
 `;
@@ -26,7 +26,7 @@ const Title = styled.h2`
   font-size: 3rem;
   font-weight: 400;
   text-align: center;
-  color: #ffffff;
+  color: #68675f;
   margin-bottom: 4rem;
   font-family: "Instrument Serif", serif;
   font-style: normal;
@@ -42,23 +42,23 @@ const Content = styled.div`
 `;
 
 const Card = styled.div`
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.4);
   padding: 3rem;
   border-radius: 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(104, 103, 95, 0.1);
+  box-shadow: 0 20px 40px rgba(104, 103, 95, 0.1);
   transition: all 0.3s ease;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 25px 50px rgba(104, 103, 95, 0.15);
   }
 `;
 
 const Text = styled.p`
   font-size: 1.25rem;
   line-height: 1.8;
-  color: #9ca3af;
+  color: #68675f;
   margin-bottom: 2rem;
   font-family: "Raleway", sans-serif;
   font-weight: 400;
@@ -68,7 +68,7 @@ const Text = styled.p`
   }
 
   strong {
-    color: #ffffff;
+    color: #68675f;
     font-family: "Raleway", sans-serif;
     font-weight: 600;
   }

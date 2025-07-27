@@ -11,7 +11,7 @@ const instrumentSerif = Instrument_Serif({
 
 const Section = styled.section`
   padding: 5rem 0;
-  background-color: #f9fafb;
+  background-color: #f3efea;
 `;
 
 const Container = styled.div`
