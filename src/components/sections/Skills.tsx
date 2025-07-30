@@ -30,6 +30,7 @@ const PalmAccent = styled.div`
 
 const Title = styled(SectionTitle)`
   color: #68675f;
+  margin-left: -8px;
 `;
 
 const Grid = styled.div`
@@ -204,6 +205,15 @@ const Section = styled(SectionWrapper)`
   position: relative;
   z-index: 10;
   margin-top: 100vh;
+  padding-top: 4rem;
+
+  @media (max-width: 1024px) {
+    padding-top: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 2rem;
+  }
 `;
 
 const Container = styled(SectionContainer)`

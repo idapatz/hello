@@ -9,6 +9,18 @@ const Section = styled(SectionWrapper)`
   background-color: #f3efea;
   position: relative;
   z-index: 10;
+  
+  &&& {
+    padding-bottom: 12rem;
+    
+    @media (max-width: 1024px) {
+      padding-bottom: 10rem;
+    }
+    
+    @media (max-width: 768px) {
+      padding-bottom: 8rem;
+    }
+  }
 `;
 
 const Container = styled(SectionContainer)`
@@ -22,10 +34,10 @@ const Container = styled(SectionContainer)`
 const Title = styled(SectionTitle)`
   color: #68675f;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   
   @media (max-width: 768px) {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
   }
 `;
 

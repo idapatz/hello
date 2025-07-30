@@ -58,6 +58,7 @@ const Container = styled.div`
 
 const Title = styled(SectionTitle)`
   color: #68675f;
+  margin-left: -8px;
 `;
 
 const ProjectsGrid = styled.div`

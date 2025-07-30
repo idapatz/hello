@@ -10,7 +10,6 @@ const Section = styled(SectionWrapper)`
   overflow: hidden;
   position: relative;
   z-index: 10;
-  min-height: 100vh;
 `;
 
 const Container = styled(SectionContainer)`
@@ -23,6 +22,16 @@ const Container = styled(SectionContainer)`
 
 const Title = styled(SectionTitle)`
   color: #68675f;
+  margin-bottom: 2rem;
+  margin-left: -8px;
+  
+  @media (max-width: 1024px) {
+    margin-bottom: 1.75rem;
+  }
+  
+  @media (max-width: 768px) {
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const Separator = styled.div`

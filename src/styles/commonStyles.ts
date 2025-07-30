@@ -41,16 +41,20 @@ export const SectionContainer = styled.div`
 
 // Common section wrapper
 export const SectionWrapper = styled.section`
-  padding: 10rem 0;
+  padding: 3rem 0 6rem 0;
   position: relative;
   width: 100%;
   
   @media (max-width: 1024px) {
-    padding: 8rem 0;
+    padding: 3rem 0 5.5rem 0;
   }
   
   @media (max-width: 768px) {
-    padding: 6rem 0;
+    padding: 3rem 0 5rem 0;
+  }
+
+  &:last-of-type {
+    padding-bottom: 3rem;
   }
 `;
 
@@ -59,23 +63,23 @@ export const SectionTitle = styled.h2`
   font-family: var(--font-instrument);
   font-size: 6rem;
   font-weight: 400;
-  margin: 0 0 6rem 0;
+  margin: 0 0 3rem 0;
   padding: 0;
   color: inherit;
   line-height: 1.1;
   
   @media (max-width: 1400px) {
     font-size: 5rem;
-    margin: 0 0 5rem 0;
+    margin: 0 0 2.5rem 0;
   }
   
   @media (max-width: 1024px) {
     font-size: 4rem;
-    margin: 0 0 4rem 0;
+    margin: 0 0 2rem 0;
   }
   
   @media (max-width: 768px) {
     font-size: 3rem;
-    margin: 0 0 3rem 0;
+    margin: 0 0 1.5rem 0;
   }
 `; 
