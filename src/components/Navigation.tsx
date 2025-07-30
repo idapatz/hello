@@ -278,20 +278,12 @@ const Navigation = () => {
               Engagement
             </NavLink>
           </NavItem>
-          <NavItem>
-            <NavLink
-              whileHover={{ y: -2 }}
-              onClick={() => navigateToSection('contact')}
-            >
-              Kontakt
-            </NavLink>
-          </NavItem>
           <CTAButton
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => navigateToSection('contact')}
           >
-            Get in Touch
+            Kontakt
           </CTAButton>
         </NavMenu>
 
