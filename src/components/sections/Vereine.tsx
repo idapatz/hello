@@ -16,6 +16,15 @@ const VereinSection = styled(SectionWrapper)`
   overflow: hidden;
   position: relative;
   z-index: 10;
+  padding-top: 6rem;
+  
+  @media (max-width: 1024px) {
+    padding-top: 5rem;
+  }
+  
+  @media (max-width: 768px) {
+    padding-top: 4rem;
+  }
 `;
 
 const Container = styled(SectionContainer)`
@@ -49,12 +58,16 @@ const ContentWrapper = styled.div`
 
 const Title = styled(SectionTitle)`
   color: #68675f;
-  margin-bottom: 6rem;
+  margin-bottom: 3rem;
   text-align: center;
   width: 100%;
   
-  @media (max-width: 767px) {
-    margin-bottom: 4rem;
+  @media (max-width: 1024px) {
+    margin-bottom: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    margin-bottom: 1.5rem;
   }
 `;
 
