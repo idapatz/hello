@@ -4,59 +4,62 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Instrument_Serif } from 'next/font/google';
 import Image from 'next/image';
+import { SectionContainer, SectionWrapper, SectionTitle } from '@/styles/commonStyles';
 
 const instrumentSerif = Instrument_Serif({
   weight: '400',
   subsets: ['latin'],
 });
 
-const VereinSection = styled.section`
-  padding: 8rem 0;
+const VereinSection = styled(SectionWrapper)`
   background-color: #f3efea;
   overflow: hidden;
   position: relative;
   z-index: 10;
 `;
 
-const Container = styled.div`
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0;
+const Container = styled(SectionContainer)`
   position: relative;
   z-index: 1;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
-const Title = styled.h2`
-  font-size: 60px;
-  font-weight: 400;
-  font-family: "Instrument Serif", serif;
-  font-style: normal;
-  color: #68675f;
-  margin-bottom: 4rem;
-  text-align: left;
-  max-width: 600px;
+const ContentWrapper = styled.div`
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto 4rem;
-  padding: 0 15%;
-
-  @media (min-width: 768px) {
-    font-size: 60px;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  
+  @media (max-width: 1400px) {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
+  
+  @media (max-width: 1024px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+`;
 
+const Title = styled(SectionTitle)`
+  color: #68675f;
+  margin-bottom: 6rem;
+  text-align: center;
+  width: 100%;
+  
   @media (max-width: 767px) {
-    padding: 0 2rem;
-    margin-bottom: 2rem;
-    font-size: 44px;
+    margin-bottom: 4rem;
   }
 `;
 
 const VereinGrid = styled.div`
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 3rem 6rem;
@@ -86,11 +89,10 @@ const VereinGrid = styled.div`
   }
   
   @media (max-width: 767px) {
-    padding: 0 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 3rem;
     
     /* Reset grid positioning for mobile */
     & > div {
@@ -230,48 +232,51 @@ const Vereine = () => {
   };
 
   return (
-    <VereinSection>
+    <VereinSection id="vereine">
       <Container>
-        <VereinGrid>
-          {vereine.map((verein, index) => (
-            <VereinCard
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-            >
-              <a
-                href={verein.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ 
-                  textDecoration: 'none', 
-                  color: 'inherit',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  width: '100%',
-                  height: '100%'
-                }}
+        <Title>Engagement</Title>
+        <ContentWrapper>
+          <VereinGrid>
+            {vereine.map((verein, index) => (
+              <VereinCard
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
               >
-                <LogoContainer>
-                  <Image
-                    src={verein.logo}
-                    alt={`${verein.name} Logo`}
-                    fill
-                    style={{ 
-                      objectFit: 'contain',
-                      borderRadius: '4px'
-                    }}
-                  />
-                </LogoContainer>
-                <VereinName>{verein.name}</VereinName>
-              </a>
-            </VereinCard>
-          ))}
-        </VereinGrid>
+                <a
+                  href={verein.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ 
+                    textDecoration: 'none', 
+                    color: 'inherit',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    width: '100%',
+                    height: '100%'
+                  }}
+                >
+                  <LogoContainer>
+                    <Image
+                      src={verein.logo}
+                      alt={`${verein.name} Logo`}
+                      fill
+                      style={{ 
+                        objectFit: 'contain',
+                        borderRadius: '4px'
+                      }}
+                    />
+                  </LogoContainer>
+                  <VereinName>{verein.name}</VereinName>
+                </a>
+              </VereinCard>
+            ))}
+          </VereinGrid>
+        </ContentWrapper>
       </Container>
     </VereinSection>
   );

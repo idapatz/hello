@@ -3,48 +3,26 @@
 import { motion } from 'framer-motion';
 import React, { useRef } from 'react';
 import styled from 'styled-components';
+import { SectionContainer, SectionWrapper, SectionTitle } from '@/styles/commonStyles';
 
-const Title = styled.h2`
-  font-family: var(--font-instrument);
-  font-size: 96px;
-  font-weight: 400;
-  font-style: normal;
-  color: #68675f;
-  text-align: left;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 0 4rem -2rem;
-  padding: 0;
-
-  @media (max-width: 767px) {
-    font-size: 64px;
-    margin: 0 0 3rem 0;
-    padding: 0;
-  }
-`;
-
-const Section = styled.section`
-  padding: 8rem 0;
+const Section = styled(SectionWrapper)`
   background-color: #f3efea;
   overflow: hidden;
   position: relative;
   z-index: 10;
   min-height: 100vh;
-
-  @media (max-width: 768px) {
-    padding: 6rem 0;
-  }
 `;
 
-const Container = styled.div`
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 2rem;
+const Container = styled(SectionContainer)`
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+`;
+
+const Title = styled(SectionTitle)`
+  color: #68675f;
 `;
 
 const Separator = styled.div`
@@ -56,7 +34,7 @@ const Separator = styled.div`
   background: rgba(104, 103, 95, 0.8);
   transform: translateX(-50%);
 
-  @media (max-width: 968px) {
+  @media (max-width: 1024px) {
     display: none;
   }
 `;
@@ -64,16 +42,19 @@ const Separator = styled.div`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 4rem;
+  gap: 8rem;
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
   padding: 0;
   position: relative;
   
-  @media (max-width: 968px) {
+  @media (max-width: 1400px) {
+    gap: 6rem;
+  }
+  
+  @media (max-width: 1024px) {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 4rem;
   }
 `;
 
@@ -87,12 +68,18 @@ const RightColumn = styled.div`
 
 const TextContent = styled.div`
   font-family: var(--font-raleway);
-  font-size: 1.25rem;
-  line-height: 1.8;
+  font-size: 1.125rem;
+  line-height: 1.6;
   color: #68675f;
 
+  @media (max-width: 1024px) {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
   @media (max-width: 768px) {
-    font-size: 1.125rem;
+    font-size: 1rem;
+    line-height: 1.5;
   }
 `;
 
@@ -101,7 +88,7 @@ const HighlightedText = styled(motion.span)`
   display: inline-block;
   color: #68675f;
   font-weight: 400;
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-instrument);
   font-style: normal;
   
   &::after {
@@ -117,17 +104,13 @@ const HighlightedText = styled(motion.span)`
 `;
 
 const LeftTextContent = styled(TextContent)`
-  padding-left: 1rem;
-
-  @media (max-width: 767px) {
-    padding-left: 0;
-  }
+  padding-left: 0;
 `;
 
 const RightTextContent = styled(TextContent)`
-  margin-top: 11rem;
+  margin-top: 8rem;
 
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
     margin-top: 0;
   }
 `;
@@ -138,16 +121,17 @@ const Drive = () => {
   return (
     <Section id="drive" ref={containerRef}>
       <Container>
+        <Title>Innerer Kompass</Title>
         <Grid>
           <Separator />
           <LeftColumn>
-            <Title>Innerer Kompass</Title>
             <LeftTextContent>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
+                style={{ marginBottom: '1.5rem' }}
               >
                 Ich glaube nicht an Innovation um der Innovation willen.
                 Mich interessiert, was trägt, wenn der <HighlightedText
@@ -163,6 +147,7 @@ const Drive = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                style={{ marginBottom: '1.5rem' }}
               >
                 Ich habe Unternehmen mit aufgebaut, die nachhaltig wachsen – weil Menschen dort Klarheit finden, Verantwortung übernehmen und sich einbringen können.
               </motion.p>
@@ -172,6 +157,7 @@ const Drive = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                style={{ marginBottom: '1.5rem' }}
               >
                 Mein Antrieb ist kein Produkt. Kein Pitch. Kein Trend.
                 Mein Antrieb ist die Frage: Wie muss ein Unternehmen beschaffen sein, damit es langfristig <HighlightedText
@@ -187,6 +173,7 @@ const Drive = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+                style={{ marginBottom: '1.5rem' }}
               >
                 Ich denke nicht in Quartalen. Ich denke in <HighlightedText
                   initial={{ scaleX: 0 }}
@@ -202,6 +189,7 @@ const Drive = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+                style={{ marginBottom: '0' }}
               >
                 Deshalb reizt mich die Idee, mit euch ein Unternehmen zu bauen, das nicht nur technologisch führend ist – sondern menschlich relevant.
               </motion.p>
@@ -215,6 +203,7 @@ const Drive = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                style={{ marginBottom: '1.5rem' }}
               >
                 Ich habe selten eine Sprache in einem Unternehmen gefunden, die so klar benennt, was oft nur gefühlt wird: Dass Wirtschaft Verantwortung trägt. Und dass Technologie nur dann wirkt, wenn Menschen darin ihren Platz finden.
               </motion.p>
@@ -224,6 +213,7 @@ const Drive = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+                style={{ marginBottom: '1.5rem' }}
               >
                 Lesharo spricht von <HighlightedText
                   initial={{ scaleX: 0 }}
@@ -248,6 +238,7 @@ const Drive = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
+                style={{ marginBottom: '1.5rem' }}
               >
                 Ich will keine Systeme bauen, die gut aussehen, aber nichts halten. Ich will mit Menschen arbeiten, die Klarheit nicht für Schwäche halten.
               </motion.p>
@@ -257,6 +248,7 @@ const Drive = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: 1.1, ease: "easeOut" }}
+                style={{ marginBottom: '0' }}
               >
                 Deshalb glaube ich: Das, was ihr aufbauen wollt kann mit dem, was ich mitbringe, richtig gut werden. Und ich würde gerne mit euch herausfinden, wie.
               </motion.p>

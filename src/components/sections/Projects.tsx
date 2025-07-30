@@ -3,67 +3,81 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Instrument_Serif } from 'next/font/google';
+import { SectionWrapper, SectionTitle } from '@/styles/commonStyles';
 
 const instrumentSerif = Instrument_Serif({ 
   weight: '400',
   subsets: ['latin']
 });
 
-const Section = styled.section`
-  padding: 8rem 0;
+const Section = styled(SectionWrapper)`
   background-color: #f3efea;
   position: relative;
   overflow: visible;
   z-index: 10;
-
-  @media (max-width: 768px) {
-    padding: 6rem 0;
-  }
 `;
 
+// Custom container with reduced spacing for Projects section
 const Container = styled.div`
+  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding-left: 8rem;
+  padding-right: 8rem;
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  
+  @media (max-width: 1400px) {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+  
+  @media (max-width: 1200px) {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+  
+  @media (max-width: 1024px) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+  
+  @media (max-width: 768px) {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  
+  @media (max-width: 480px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 `;
 
-const Title = styled.h2`
-  font-family: var(--font-instrument);
-  font-size: 96px;
-  font-weight: 400;
-  font-style: normal;
+const Title = styled(SectionTitle)`
   color: #68675f;
-  text-align: left;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 0 4rem -2rem;
-  padding: 0;
-
-  @media (max-width: 767px) {
-    font-size: 64px;
-    margin: 0 0 3rem 0;
-    padding: 0;
-  }
 `;
 
 const ProjectsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 5rem;
-  row-gap: 8rem;
+  gap: 3rem;
+  row-gap: 5rem;
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
   padding: 0;
   
+  @media (max-width: 1400px) {
+    gap: 2.5rem;
+    row-gap: 4rem;
+  }
+  
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
-    gap: 6rem;
+    gap: 3rem;
+    row-gap: 3rem;
   }
 `;
 
@@ -76,19 +90,28 @@ const ProjectCard = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 3.5rem;
-  border-radius: 2rem;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
   box-shadow: 
-    20px 20px 60px rgba(32, 42, 35, 0.5),
-    -20px -20px 60px rgba(55, 122, 75, 0.2),
-    inset 2px 2px 4px rgba(55, 122, 75, 0.1),
-    inset -2px -2px 4px rgba(32, 42, 35, 0.15);
+    12px 12px 30px rgba(20, 25, 22, 0.6),
+    -8px -8px 20px rgba(60, 80, 66, 0.3),
+    inset 3px 3px 6px rgba(60, 80, 66, 0.2),
+    inset -3px -3px 6px rgba(20, 25, 22, 0.4);
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   height: 100%;
   color: #f9fffb;
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(10px);
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+    box-shadow: 
+      8px 8px 20px rgba(20, 25, 22, 0.5),
+      -6px -6px 15px rgba(60, 80, 66, 0.25),
+      inset 2px 2px 4px rgba(60, 80, 66, 0.15),
+      inset -2px -2px 4px rgba(20, 25, 22, 0.3);
+  }
 
   &::before {
     content: '';
@@ -99,10 +122,10 @@ const ProjectCard = styled.div`
     bottom: 0;
     background: linear-gradient(
       145deg,
-      rgba(55, 122, 75, 0.1),
-      rgba(32, 42, 35, 0.05)
+      rgba(60, 80, 66, 0.1),
+      rgba(20, 25, 22, 0.05)
     );
-    border-radius: 2rem;
+    border-radius: 1.5rem;
     opacity: 0;
     transition: opacity 0.4s ease;
   }
@@ -114,22 +137,22 @@ const ProjectCard = styled.div`
     left: 1px;
     right: 1px;
     bottom: 1px;
-    border-radius: 2rem;
+    border-radius: 1.5rem;
     background: linear-gradient(
       145deg,
-      rgba(255, 255, 255, 0.05),
-      rgba(255, 255, 255, 0.02)
+      rgba(60, 80, 66, 0.1),
+      rgba(20, 25, 22, 0.02)
     );
     pointer-events: none;
   }
 
   &:hover {
-    transform: translateY(-5px) scale(1.02);
+    transform: translateY(-3px) scale(1.01);
     box-shadow: 
-      25px 25px 75px rgba(32, 42, 35, 0.6),
-      -25px -25px 75px rgba(55, 122, 75, 0.25),
-      inset 2px 2px 4px rgba(55, 122, 75, 0.1),
-      inset -2px -2px 4px rgba(32, 42, 35, 0.15);
+      15px 15px 35px rgba(20, 25, 22, 0.7),
+      -10px -10px 25px rgba(60, 80, 66, 0.4),
+      inset 4px 4px 8px rgba(60, 80, 66, 0.25),
+      inset -4px -4px 8px rgba(20, 25, 22, 0.5);
 
     &::before {
       opacity: 1;
@@ -138,12 +161,16 @@ const ProjectCard = styled.div`
 `;
 
 const ProjectHeader = styled.div`
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
+  
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
 `;
 
 const ProjectTitle = styled.h3`
   font-family: var(--font-instrument);
-  font-size: 2rem;
+  font-size: 1.875rem;
   font-weight: 400;
   font-style: normal;
   line-height: 1.3;
@@ -151,10 +178,15 @@ const ProjectTitle = styled.h3`
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
+
+  @media (max-width: 1024px) {
+    font-size: 1.625rem;
+  }
 
   @media (max-width: 768px) {
-    font-size: 1.75rem;
+    font-size: 1.375rem;
+    gap: 0.5rem;
   }
 `;
 
@@ -202,16 +234,24 @@ const ProjectLink = styled.a`
 `;
 
 const ProjectMeta = styled.div`
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
+  
+  @media (max-width: 768px) {
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const MetaItem = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   color: #f9fffb;
   font-family: var(--font-raleway);
   
   &:last-child {
     margin-bottom: 0;
+  }
+  
+  @media (max-width: 768px) {
+    margin-bottom: 1.25rem;
   }
 `;
 
@@ -232,28 +272,38 @@ const MetaText = styled.span`
 `;
 
 const ProjectContent = styled.div`
-  margin-top: 2rem;
+  margin-top: 1.5rem;
+  
+  @media (max-width: 768px) {
+    margin-top: 1.25rem;
+  }
 `;
 
 const ContentList = styled.ul`
   list-style: none;
   padding: 0;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1rem 0;
 `;
 
 const ContentItem = styled.li`
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
+  gap: 0.625rem;
+  margin-bottom: 0.625rem;
   color: #f9fffb;
   font-family: var(--font-raleway);
   font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.5;
   
   &:last-child {
     margin-bottom: 0;
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -264,8 +314,12 @@ const USP = styled.div`
   color: #f9fffb;
   font-family: var(--font-raleway);
   font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const Projects = () => {

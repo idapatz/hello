@@ -1,29 +1,17 @@
 'use client';
 
 import React from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import styled from 'styled-components';
-import { Instrument_Serif } from 'next/font/google';
+import { SectionContainer, SectionWrapper, SectionTitle } from '@/styles/commonStyles';
 
-const instrumentSerif = Instrument_Serif({ 
-  weight: '400',
-  subsets: ['latin']
-});
-
-const Section = styled.section`
-  padding: 6rem 0;
+const Section = styled(SectionWrapper)`
   background-color: #f3efea;
   position: relative;
   z-index: 10;
-
-  @media (max-width: 768px) {
-    padding: 4rem 0;
-  }
 `;
 
-const Container = styled.div`
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 2rem;
+const Container = styled(SectionContainer)`
   position: relative;
   z-index: 1;
   display: flex;
@@ -31,36 +19,45 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Title = styled.h2`
-  font-size: 96px;
-  font-weight: 400;
+const Title = styled(SectionTitle)`
+  color: #68675f;
   text-align: center;
-  color: #1a1a1a;
-  margin-bottom: 3rem;
-  font-family: "Instrument Serif", serif;
-  font-style: normal;
-
+  margin-bottom: 4rem;
+  
   @media (max-width: 768px) {
-    font-size: 64px;
+    margin-bottom: 3rem;
   }
 `;
 
-const Content = styled.div`
-  max-width: 32rem;
-  margin: 0 auto;
+const FormWrapper = styled.div`
   width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 `;
 
-const Form = styled.form`
-  background: white;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+const StyledForm = styled.form`
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.4)
+  );
+  padding: 3rem;
+  border-radius: 2rem;
+  box-shadow: 
+    20px 20px 60px rgba(104, 103, 95, 0.15),
+    -20px -20px 60px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.3),
+    inset -2px -2px 4px rgba(104, 103, 95, 0.1);
+  backdrop-filter: blur(10px);
+  
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 const FormGroup = styled.div`
-  margin-bottom: 1.5rem;
-
+  margin-bottom: 2rem;
+  
   &:last-child {
     margin-bottom: 0;
   }
@@ -68,168 +65,216 @@ const FormGroup = styled.div`
 
 const Label = styled.label`
   display: block;
+  font-family: var(--font-raleway);
   font-size: 1rem;
   font-weight: 500;
-  color: #1a1a1a;
-  margin-bottom: 0.5rem;
-  font-family: "Raleway", sans-serif;
+  color: #68675f;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.5px;
 `;
 
 const Input = styled.input`
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-raleway);
   font-size: 1rem;
-  transition: all 0.2s;
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
-
+  color: #68675f;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(104, 103, 95, 0.2);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  
   &:focus {
     outline: none;
-    border-color: #065f46;
-    box-shadow: 0 0 0 3px rgba(6, 95, 70, 0.1);
+    border-color: #d6fea1;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(214, 254, 161, 0.2);
+  }
+  
+  &::placeholder {
+    color: rgba(104, 103, 95, 0.6);
   }
 `;
 
 const Textarea = styled.textarea`
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-raleway);
   font-size: 1rem;
-  transition: all 0.2s;
+  color: #68675f;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(104, 103, 95, 0.2);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
   resize: vertical;
-  min-height: 8rem;
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
-
+  min-height: 120px;
+  box-sizing: border-box;
+  
   &:focus {
     outline: none;
-    border-color: #065f46;
-    box-shadow: 0 0 0 3px rgba(6, 95, 70, 0.1);
+    border-color: #d6fea1;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(214, 254, 161, 0.2);
+  }
+  
+  &::placeholder {
+    color: rgba(104, 103, 95, 0.6);
   }
 `;
 
-const Button = styled.button`
-  width: 100%;
-  padding: 0.75rem 1.5rem;
-  background-color: #065f46;
-  color: white;
-  font-size: 1.125rem;
-  font-weight: 600;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s;
-  font-family: "Raleway", sans-serif;
-
-  &:hover {
-    background-color: #064e3b;
-  }
-`;
-
-const DirectContact = styled.div`
-  margin-top: 3rem;
-  text-align: center;
-`;
-
-const DirectContactTitle = styled.h3`
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 1rem;
-  font-family: "Raleway", sans-serif;
-`;
-
-const ContactList = styled.div`
+const ButtonContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
 `;
 
-const ContactItem = styled.p`
-  color: #4a4a4a;
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
-`;
-
-const ContactLink = styled.a`
-  color: #065f46;
-  text-decoration: none;
-  transition: color 0.2s;
-
-  &:hover {
-    text-decoration: underline;
+const SubmitButton = styled.button`
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #3f5645;
+  background: transparent;
+  border: 1px solid #3f5645;
+  border-radius: 0;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-raleway);
+  
+  &:hover:not(:disabled) {
+    background: #3f5645;
+    color: #f9fffb;
+    transform: translateY(-2px);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    
+    &:hover {
+      background: transparent;
+      color: #3f5645;
+    }
   }
 `;
+
+const SuccessMessage = styled.div`
+  text-align: center;
+  padding: 3rem;
+  background: linear-gradient(
+    145deg,
+    rgba(214, 254, 161, 0.2),
+    rgba(214, 254, 161, 0.1)
+  );
+  border-radius: 2rem;
+  border: 2px solid rgba(214, 254, 161, 0.3);
+`;
+
+const SuccessTitle = styled.h3`
+  font-family: var(--font-instrument);
+  font-size: 2rem;
+  color: #68675f;
+  margin: 0 0 1rem 0;
+`;
+
+const SuccessText = styled.p`
+  font-family: var(--font-raleway);
+  font-size: 1.125rem;
+  color: #68675f;
+  margin: 0;
+  line-height: 1.6;
+`;
+
+function ContactForm() {
+  const [state, handleSubmit] = useForm("xpwllayo");
+  
+  if (state.succeeded) {
+    return (
+      <FormWrapper>
+        <SuccessMessage>
+          <SuccessTitle>Vielen Dank!</SuccessTitle>
+          <SuccessText>
+            Deine Nachricht wurde erfolgreich gesendet. Ich werde mich schnellstmöglich bei dir melden.
+          </SuccessText>
+        </SuccessMessage>
+      </FormWrapper>
+    );
+  }
+
+  return (
+    <FormWrapper>
+      <StyledForm onSubmit={handleSubmit}>
+        <FormGroup>
+          <Label htmlFor="email">E-Mail Adresse</Label>
+          <Input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="deine@email.de"
+            required
+          />
+          <ValidationError 
+            prefix="Email" 
+            field="email"
+            errors={state.errors}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Label htmlFor="name">Name</Label>
+          <Input
+            id="name"
+            type="text"
+            name="name"
+            placeholder="Dein Name"
+            required
+          />
+          <ValidationError 
+            prefix="Name" 
+            field="name"
+            errors={state.errors}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Label htmlFor="message">Nachricht</Label>
+          <Textarea
+            id="message"
+            name="message"
+            placeholder="Erzähl mir von deinem Projekt oder deiner Idee..."
+            required
+          />
+          <ValidationError 
+            prefix="Message" 
+            field="message"
+            errors={state.errors}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <ButtonContainer>
+            <SubmitButton type="submit" disabled={state.submitting}>
+              {state.submitting ? 'Wird gesendet...' : 'Nachricht senden'}
+            </SubmitButton>
+          </ButtonContainer>
+        </FormGroup>
+      </StyledForm>
+    </FormWrapper>
+  );
+}
 
 const Contact = () => {
   return (
     <Section id="contact">
       <Container>
-        <Title>
-          Kontakt
-        </Title>
-        <Content>
-          <Form>
-            <FormGroup>
-              <Label htmlFor="name">Name</Label>
-              <Input
-                type="text"
-                id="name"
-                name="name"
-                required
-              />
-            </FormGroup>
-            
-            <FormGroup>
-              <Label htmlFor="email">E-Mail</Label>
-              <Input
-                type="email"
-                id="email"
-                name="email"
-                required
-              />
-            </FormGroup>
-            
-            <FormGroup>
-              <Label htmlFor="message">Nachricht</Label>
-              <Textarea
-                id="message"
-                name="message"
-                required
-              />
-            </FormGroup>
-            
-            <Button type="submit">
-              Nachricht senden
-            </Button>
-          </Form>
-
-          <DirectContact>
-            <DirectContactTitle>Oder kontaktieren Sie mich direkt:</DirectContactTitle>
-            <ContactList>
-              <ContactItem>
-                <strong>E-Mail: </strong>
-                <ContactLink href="mailto:ihre.email@beispiel.de">
-                  ihre.email@beispiel.de
-                </ContactLink>
-              </ContactItem>
-              <ContactItem>
-                <strong>LinkedIn: </strong>
-                <ContactLink 
-                  href="https://linkedin.com/in/ihr-profil" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  linkedin.com/in/ihr-profil
-                </ContactLink>
-              </ContactItem>
-            </ContactList>
-          </DirectContact>
-        </Content>
+        <Title>Kontakt</Title>
+        <ContactForm />
       </Container>
     </Section>
   );
 };
 
-export default Contact; 
+export default Contact;
