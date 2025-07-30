@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter, usePathname } from 'next/navigation';
 
 const Nav = styled(motion.nav)`
   position: fixed;
@@ -171,6 +172,8 @@ const CTAButton = styled(motion.a)`
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -181,16 +184,41 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Handle hash navigation when coming from other pages
+    if (pathname === '/' && window.location.hash) {
+      const sectionId = window.location.hash.substring(1);
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100); // Small delay to ensure page is loaded
+    }
+  }, [pathname]);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const navigateToSection = (sectionId: string) => {
     setIsOpen(false);
+    
+    if (pathname === '/') {
+      // We're on the home page, scroll to section
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // We're on a different page, navigate to home with hash
+      router.push(`/#${sectionId}`);
+    }
+  };
+
+  const navigateHome = () => {
+    setIsOpen(false);
+    router.push('/');
   };
 
   return (
@@ -199,18 +227,20 @@ const Navigation = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       style={{
-        background: scrolled 
-          ? 'rgba(40, 53, 44, 0.75)' 
-          : 'rgba(249, 255, 251, 0.08)',
-        borderBottom: scrolled 
-          ? '1px solid rgba(214, 254, 161, 0.1)' 
-          : '1px solid rgba(249, 255, 251, 0.08)'
+        background: pathname === '/' 
+          ? (scrolled ? 'rgba(40, 53, 44, 0.75)' : 'rgba(249, 255, 251, 0.08)')
+          : '#28352c',
+        borderBottom: pathname === '/'
+          ? (scrolled ? '1px solid rgba(214, 254, 161, 0.1)' : '1px solid rgba(249, 255, 251, 0.08)')
+          : '1px solid rgba(214, 254, 161, 0.1)',
+        backdropFilter: pathname === '/' ? 'blur(12px) saturate(180%)' : 'none',
+        WebkitBackdropFilter: pathname === '/' ? 'blur(12px) saturate(180%)' : 'none'
       }}
     >
       <NavContainer>
         <Logo
           whileHover={{ scale: 1.05 }}
-          onClick={() => scrollToSection('hero')}
+          onClick={navigateHome}
         >
           Ida Patzelt
         </Logo>
@@ -219,7 +249,7 @@ const Navigation = () => {
           <NavItem>
             <NavLink
               whileHover={{ y: -2 }}
-              onClick={() => scrollToSection('skills')}
+              onClick={() => navigateToSection('skills')}
             >
               Skills
             </NavLink>
@@ -227,7 +257,7 @@ const Navigation = () => {
           <NavItem>
             <NavLink
               whileHover={{ y: -2 }}
-              onClick={() => scrollToSection('drive')}
+              onClick={() => navigateToSection('drive')}
             >
               Drive
             </NavLink>
@@ -235,7 +265,7 @@ const Navigation = () => {
           <NavItem>
             <NavLink
               whileHover={{ y: -2 }}
-              onClick={() => scrollToSection('projects')}
+              onClick={() => navigateToSection('projects')}
             >
               Projekte
             </NavLink>
@@ -243,7 +273,15 @@ const Navigation = () => {
           <NavItem>
             <NavLink
               whileHover={{ y: -2 }}
-              onClick={() => scrollToSection('contact')}
+              onClick={() => navigateToSection('vereine')}
+            >
+              Engagement
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              whileHover={{ y: -2 }}
+              onClick={() => navigateToSection('contact')}
             >
               Kontakt
             </NavLink>
@@ -251,7 +289,7 @@ const Navigation = () => {
           <CTAButton
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => scrollToSection('contact')}
+            onClick={() => navigateToSection('contact')}
           >
             Get in Touch
           </CTAButton>
