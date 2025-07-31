@@ -191,11 +191,6 @@ const Footer = () => {
               >
                 LinkedIn
               </SocialLink>
-              <SocialLink 
-                href="mailto:ida.patzelt@gmail.com"
-              >
-                E-Mail
-              </SocialLink>
             </SocialLinks>
           </FooterColumn>
           
