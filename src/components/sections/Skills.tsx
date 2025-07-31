@@ -13,7 +13,7 @@ const instrumentSerif = Instrument_Serif({
 
 const PalmAccent = styled.div`
   position: absolute;
-  top: -400px;
+  top: -300px;
   right: -200px;
   width: 1200px;
   height: 1200px;
@@ -23,7 +23,7 @@ const PalmAccent = styled.div`
   @media (max-width: 768px) {
     width: 800px;
     height: 800px;
-    top: -250px;
+    top: -200px;
     right: -100px;
   }
 `;
@@ -206,6 +206,9 @@ const Section = styled(SectionWrapper)`
   z-index: 10;
   margin-top: 100vh;
   padding-top: 4rem;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
+  overflow-y: visible;
 
   @media (max-width: 1024px) {
     padding-top: 3rem;
@@ -255,13 +258,14 @@ const Skills = () => {
   return (
     <Section id="skills">
       <PalmAccent>
-        <Image
-          src="/Palm.png"
-          alt="Palm decoration"
-          fill
-          style={{ objectFit: 'contain' }}
-          priority
-        />
+                  <Image
+            src="/Palm.png"
+            alt="Palm decoration"
+            fill
+            style={{ objectFit: 'contain', objectPosition: 'top' }}
+            priority
+            sizes="(max-width: 768px) 800px, 1200px"
+          />
       </PalmAccent>
       <Container>
         <Title>Skills</Title>

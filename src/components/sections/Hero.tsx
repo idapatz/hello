@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Instrument_Serif, Dancing_Script } from 'next/font/google';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { SectionContainer } from '@/styles/commonStyles';
 
 const instrumentSerif = Instrument_Serif({ 
@@ -17,23 +18,24 @@ const dancingScript = Dancing_Script({
 
 const HeroSection = styled.section`
   min-height: 100vh;
-  height: 100vh;
   display: flex;
   align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  height: 100vh;
   overflow: hidden;
   background-image: url('/Background Hero.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: 1;
+  z-index: 0;
+  padding: 2rem 0;
   
   & > * {
     position: relative;
-    z-index: 2;
+    z-index: 1;
   }
 `;
 
@@ -43,7 +45,6 @@ const Container = styled(SectionContainer)`
   gap: 6rem;
   align-items: center;
   justify-content: center;
-  min-height: 80vh;
 
   @media (max-width: 1400px) {
     gap: 4rem;
@@ -178,6 +179,8 @@ const CTAContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 0.5rem;
+  position: relative;
+  z-index: 20;
   
   @media (max-width: 1024px) {
     justify-content: center;
@@ -185,27 +188,41 @@ const CTAContainer = styled.div`
   }
 `;
 
-const CTALink = styled.a`
-  font-size: 1rem;
+const CTALink = styled(motion.a)`
+  font-family: var(--font-raleway);
+  font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #d6fea1;
   text-decoration: none;
-  transition: all 0.3s ease;
-  padding: 1rem 2rem;
+  padding: 0.8rem 1.5rem;
   border: 1px solid #d6fea1;
   background: transparent;
-  font-family: var(--font-raleway);
+  cursor: pointer;
+  display: inline-block;
+  will-change: transform;
 
   &:hover {
     background: #d6fea1;
     color: #3f5645;
-    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem 2rem;
+    font-size: 1rem;
   }
 `;
 
 const Hero = () => {
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <HeroSection>
       <Container>
@@ -215,7 +232,8 @@ const Hero = () => {
             alt="Ida Patzelt"
             fill
             priority
-            sizes="(max-width: 768px) 100vw, 35vw"
+            quality={100}
+            sizes="(max-width: 768px) 320px, (max-width: 1024px) 400px, (max-width: 1400px) 450px, 500px"
           />
         </ImageColumn>
         <ContentColumn>
@@ -230,7 +248,12 @@ const Hero = () => {
             KI mit Sinn. Geschäftsmodelle mit Wirkung. Und Strukturen, die bleiben.
           </Description>
           <CTAContainer>
-            <CTALink href="#contact">
+            <CTALink 
+              href="#contact"
+              onClick={handleContactClick}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
               get in touch
             </CTALink>
           </CTAContainer>
