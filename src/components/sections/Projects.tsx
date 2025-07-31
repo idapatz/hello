@@ -308,20 +308,6 @@ const ContentItem = styled.li`
   }
 `;
 
-const USP = styled.div`
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(249, 255, 251, 0.1);
-  color: #f9fffb;
-  font-family: var(--font-raleway);
-  font-weight: 400;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
-  }
-`;
 
 const Projects = () => {
   const projects = [
@@ -329,7 +315,7 @@ const Projects = () => {
       title: "Automatisierung weitergedacht",
       company: "Distart",
       link: "https://www.distart.de/",
-      project: "Entwicklung einer beruflichen Weiterbildung zu Automatisierungen",
+      project: "Entwicklung einer beruflichen Weiterbildung zum Thema Automatisierung",
       role: "Konzeption, Inhalte, Didaktik & Umsetzung",
       achievements: [
         "Entwicklung der inhaltlichen Struktur & Lernziele",
@@ -337,13 +323,13 @@ const Projects = () => {
         "Erstellung & Koordination der Inhalte",
         "Zielgruppengerechte Umsetzung – ohne Fachjargon, aber mit Tiefgang"
       ],
-      usp: "Ich bin keine Entwicklerin – aber ich weiß, wie man komplexe Tools so vermittelt, dass sie wirken."
+
     },
     {
       title: "Mit Klarheit wachsen",
       company: "Agent Systems",
       link: "https://agent-systems.de/",
-      project: "Strategischer Aufbau & operative Ausrichtung eines KI-Tech-Startups",
+      project: "Strategischer Aufbau & operative Ausrichtung eines KI-Tech-Unternehmens",
       role: "COO – verantwortlich für Struktur, Kommunikation & Wachstum",
       achievements: [
         "Positionierung & Messaging (Website, Sales, LinkedIn)",
@@ -351,7 +337,7 @@ const Projects = () => {
         "Kundenakquise durch echte Beziehungen statt Push-Sales",
         "Gestaltung der externen Sichtbarkeit durch Events & Community-Building"
       ],
-      usp: "Beziehungen first. Ich höre hin, finde heraus, was gebraucht wird – und gestalte dann Lösungen, die passen."
+
     },
     {
       title: "Von der Idee zur Organisation",
@@ -361,11 +347,11 @@ const Projects = () => {
       role: "Assistenz der Geschäftsführung / Mitaufbau",
       achievements: [
         "Entwicklung einer funktionierenden Remote-Teamstruktur",
-        "Einführung sinnvoller Tools (Notion, Pipedrive, Google Workspace)",
+        "Einführung sinnvoller Tools (Notion, Pipedrive, Personio)",
         "Etablierung von HR- & Meetingprozessen",
         "Controlling & Zielplanung zur wirtschaftlichen Steuerung"
       ],
-      usp: "Ich denke Unternehmensaufbau vom Menschen aus – aber immer mit Blick auf Wirtschaftlichkeit."
+
     },
     {
       title: "Sichtbar werden",
@@ -378,7 +364,7 @@ const Projects = () => {
         "Konzeption & Durchführung einer zielgerichteten Mailkampagne",
         "Vorbereitung & Inhaltserstellung für Sales-Workshops"
       ],
-      usp: "Kommunikation, die nicht schreit – sondern trifft. Klar. Mutig. Auf den Punkt."
+
     }
   ];
 
@@ -418,10 +404,7 @@ const Projects = () => {
                   ))}
                 </ContentList>
                 
-                <USP>
-                  <MetaLabel>Mein USP</MetaLabel>
-                  {project.usp}
-                </USP>
+
               </ProjectContent>
             </ProjectCard>
           ))}
