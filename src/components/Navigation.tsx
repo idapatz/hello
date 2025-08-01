@@ -10,15 +10,40 @@ const Nav = styled(motion.nav)`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-  background: rgba(249, 255, 251, 0.08);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border: 1px solid rgba(249, 255, 251, 0.08);
+  z-index: 9999;
+  width: 100%;
+  height: 80px; /* Force height for Safari Mobile */
+  /* Safari Mobile fixes - CRITICAL */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  /* Force hardware acceleration */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  
+  /* ALWAYS visible background for Safari Mobile */
+  background: rgba(249, 255, 251, 0.95) !important;
+  border: 1px solid rgba(249, 255, 251, 0.3);
   box-shadow: 
-    0 4px 30px rgba(0, 0, 0, 0.1),
-    inset 0 0 30px rgba(249, 255, 251, 0.02);
+    0 4px 30px rgba(0, 0, 0, 0.15),
+    inset 0 0 30px rgba(249, 255, 251, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Safari Mobile fallback - NO backdrop filter dependency */
+  @media (max-width: 768px) {
+    background: rgba(249, 255, 251, 0.98) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  
+  /* Backdrop filter ONLY for desktop */
+  @media (min-width: 769px) {
+    @supports (backdrop-filter: blur(12px)) {
+      background: rgba(249, 255, 251, 0.08);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+    }
+  }
 
   &::before {
     content: '';
@@ -49,13 +74,30 @@ const NavContainer = styled.div`
 `;
 
 const Logo = styled(motion.div)`
-  font-family: var(--font-instrument);
+  font-family: "Instrument Serif", serif;
   font-size: 1.5rem;
   font-weight: 400;
-  color: #f9fffb;
+  color: #f9fffb !important; /* Force color for Safari Mobile */
   cursor: pointer;
   text-shadow: 0 0 20px rgba(249, 255, 251, 0.2);
   position: relative;
+  /* Safari Mobile text rendering - CRITICAL */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Force visibility on Safari Mobile */
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  /* Hardware acceleration */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  
+  @media (max-width: 768px) {
+    /* Ensure logo is always visible on Safari Mobile */
+    color: #28352c !important;
+    font-weight: 500 !important;
+    text-shadow: none;
+  }
 `;
 
 const NavMenu = styled.ul<{ $isOpen: boolean }>`
@@ -71,10 +113,16 @@ const NavMenu = styled.ul<{ $isOpen: boolean }>`
     top: 0;
     right: ${props => props.$isOpen ? '0' : '-100%'};
     width: 100%;
-    height: 100vh;
-    background: rgba(40, 53, 44, 0.85);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    height: var(--full-height, 100vh);
+    /* Fallback background for browsers without backdrop-filter */
+    background: rgba(40, 53, 44, 0.95);
+    
+    /* Backdrop filter for supported browsers */
+    @supports (backdrop-filter: blur(20px)) {
+      background: rgba(40, 53, 44, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+    }
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -91,21 +139,38 @@ const NavItem = styled.li`
 `;
 
 const NavLink = styled(motion.a)`
-  font-family: var(--font-raleway);
+  font-family: "Raleway", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #f9fffb;
+  color: #f9fffb !important; /* Force color for Safari Mobile */
   text-decoration: none;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  /* Safari Mobile text rendering - CRITICAL */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Force visibility on Safari Mobile */
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+  /* Hardware acceleration */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   cursor: pointer;
   position: relative;
   padding: 0.75rem 1rem;
   border-radius: 2rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-shadow: 0 0 20px rgba(249, 255, 251, 0.1);
-  display: flex;
   align-items: center;
+  
+  @media (max-width: 768px) {
+    /* Ensure NavLinks are always visible on Safari Mobile */
+    color: #f9fffb !important;
+    font-weight: 600 !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    background-color: rgba(249, 255, 251, 0.1);
+  }
 
   &:hover {
     background: rgba(214, 254, 161, 0.08);

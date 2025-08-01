@@ -1,10 +1,25 @@
 :root {
   --font-instrument: var(--font-instrument), "Instrument Serif", serif;
   --font-raleway: var(--font-raleway), "Raleway", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  
+  /* Safari-friendly viewport units */
+  --vh: 1vh;
+  --full-height: 100vh;
+}
+
+/* Safari viewport height fix */
+@supports (-webkit-touch-callout: none) {
+  :root {
+    --full-height: -webkit-fill-available;
+  }
 }
 
 html {
   scroll-behavior: smooth;
+  /* Improved text rendering for Safari */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -13,6 +28,10 @@ body {
   font-family: var(--font-raleway);
   background-color: #f3efea;
   color: #28352c;
+  /* Safari Mobile section gap fixes */
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -23,6 +42,31 @@ h1, h2, h3, h4, h5, h6 {
 
 * {
   box-sizing: border-box;
+  /* Prevent iOS text size adjustment */
+  -webkit-text-size-adjust: 100%;
+  /* Improve tap highlighting */
+  -webkit-tap-highlight-color: transparent;
+  /* Safari Mobile section gap fixes */
+  margin: 0;
+  padding: 0;
+}
+
+/* Safari Mobile specific fixes for seamless sections */
+@media (max-width: 768px) {
+  section {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border: none !important;
+    outline: none !important;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  
+  /* Ensure all sections have the same background */
+  section:not([id="hero"]) {
+    background-color: #f3efea !important;
+  }
 }
 
 ::selection {

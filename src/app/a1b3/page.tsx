@@ -6,7 +6,7 @@ import Vereine from '@/components/sections/Vereine';
 import Contact from '@/components/sections/Contact';
 import Footer from '@/components/Footer';
 
-const HeroSpacer = () => <div style={{ height: '100vh' }} />;
+const HeroSpacer = () => <div style={{ height: 'var(--full-height, 100vh)' }} />;
 
 export default function Home() {
   return (

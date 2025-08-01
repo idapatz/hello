@@ -11,7 +11,23 @@ const instrumentSerif = Instrument_Serif({
   subsets: ['latin']
 });
 
+const Section = styled(SectionWrapper)`
+  background-color: #f3efea;
+  position: relative;
+  z-index: 10;
+  /* Safari Mobile fixes - seamless section connections */
+  margin: 0;
+  border: none;
+  outline: none;
+`;
 
+const Container = styled(SectionContainer)`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
 
 const Title = styled(SectionTitle)`
   color: #68675f;

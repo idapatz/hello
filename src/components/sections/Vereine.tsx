@@ -3,7 +3,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Instrument_Serif } from 'next/font/google';
-import Image from 'next/image';
 import { SectionContainer, SectionWrapper, SectionTitle } from '@/styles/commonStyles';
 
 const instrumentSerif = Instrument_Serif({
@@ -17,6 +16,13 @@ const VereinSection = styled(SectionWrapper)`
   position: relative;
   z-index: 10;
   padding-top: 6rem;
+  /* Safari Mobile fixes - seamless sections */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: auto;
+  margin: 0;
+  border: none;
+  outline: none;
   
   @media (max-width: 1024px) {
     padding-top: 5rem;
@@ -24,6 +30,11 @@ const VereinSection = styled(SectionWrapper)`
   
   @media (max-width: 768px) {
     padding-top: 4rem;
+    /* Ensure no gaps on Safari Mobile */
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 `;
 
@@ -61,6 +72,11 @@ const Title = styled(SectionTitle)`
   margin-bottom: 3rem;
   text-align: center;
   width: 100%;
+  font-family: "Instrument Serif", serif;
+  /* Safari Mobile fixes */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  will-change: auto;
   
   @media (max-width: 1024px) {
     margin-bottom: 2rem;
@@ -73,44 +89,29 @@ const Title = styled(SectionTitle)`
 
 const VereinGrid = styled.div`
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 3rem 6rem;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  justify-items: center;
+  align-items: center;
+  gap: 3rem;
   
-  /* First row - 3 logos */
-  & > div:nth-child(1) {
-    grid-column: 2;
-  }
-  
-  & > div:nth-child(2) {
-    grid-column: 4;
-  }
-  
-  & > div:nth-child(3) {
-    grid-column: 6;
-  }
-  
-  /* Second row - 2 logos */
-  & > div:nth-child(4) {
-    grid-column: 3;
-  }
-  
-  & > div:nth-child(5) {
-    grid-column: 5;
+  @media (min-width: 768px) {
+    /* Desktop: create the staggered layout with flexbox */
+    & > div:nth-child(1),
+    & > div:nth-child(2),
+    & > div:nth-child(3) {
+      /* First row - 3 items */
+    }
+    
+    & > div:nth-child(4),
+    & > div:nth-child(5) {
+      /* Second row - 2 items, will wrap naturally */
+    }
   }
   
   @media (max-width: 767px) {
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 3rem;
-    
-    /* Reset grid positioning for mobile */
-    & > div {
-      grid-column: unset !important;
-    }
+    gap: 2rem;
   }
 `;
 
@@ -126,6 +127,10 @@ const VereinCard = styled(motion.div)`
   align-items: center;
   justify-content: center;
   min-height: 250px;
+  /* Safari Mobile fixes */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: auto;
   
   &:hover {
     background: transparent;
@@ -135,6 +140,11 @@ const VereinCard = styled(motion.div)`
   a {
     cursor: pointer;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
     
     &:hover {
       transform: scale(1.05);
@@ -145,13 +155,13 @@ const VereinCard = styled(motion.div)`
 const LogoContainer = styled.div`
   width: 160px;
   height: 160px;
-  position: relative;
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
   border-radius: 8px;
+  overflow: hidden;
   
   &:hover {
     box-shadow: 0 8px 25px rgba(104, 103, 95, 0.15);
@@ -163,10 +173,14 @@ const VereinName = styled.h3`
   font-weight: 400;
   color: #68675f;
   margin: 0;
-  font-family: "Raleway", sans-serif;
+  font-family: "Raleway", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.4;
   transition: all 0.3s ease;
   position: relative;
+  text-align: center;
+  /* Safari iOS text rendering fixes */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   
   &::after {
     content: '';
@@ -178,6 +192,8 @@ const VereinName = styled.h3`
     background: #68675f;
     transition: all 0.3s ease;
     transform: translateX(-50%);
+    /* Safari iOS fix */
+    will-change: width;
   }
   
   a:hover & {
@@ -186,6 +202,15 @@ const VereinName = styled.h3`
   
   a:hover &::after {
     width: 100%;
+  }
+  
+  /* Fallback for Safari iOS if pseudo-elements don't work */
+  @supports not (transform: translateX(-50%)) {
+    border-bottom: 2px solid transparent;
+    
+    a:hover & {
+      border-bottom-color: #68675f;
+    }
   }
 `;
 
@@ -254,9 +279,8 @@ const Vereine = () => {
               <VereinCard
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
                 whileHover={{ y: -5 }}
               >
                 <a
@@ -274,13 +298,26 @@ const Vereine = () => {
                   }}
                 >
                   <LogoContainer>
-                    <Image
+                    <img
                       src={verein.logo}
                       alt={`${verein.name} Logo`}
-                      fill
                       style={{ 
+                        width: '100%',
+                        height: '100%',
                         objectFit: 'contain',
-                        borderRadius: '4px'
+                        borderRadius: '4px',
+                        /* Safari Mobile compatibility */
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                        display: 'block',
+                        imageRendering: 'auto',
+                        WebkitTransform: 'translateZ(0)',
+                        transform: 'translateZ(0)'
+                      }}
+                      loading="eager"
+                      onError={(e) => {
+                        console.error('Image failed to load:', verein.logo);
+                        e.currentTarget.style.display = 'none';
                       }}
                     />
                   </LogoContainer>

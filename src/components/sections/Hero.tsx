@@ -17,14 +17,14 @@ const dancingScript = Dancing_Script({
 });
 
 const HeroSection = styled.section`
-  min-height: 100vh;
+  min-height: var(--full-height, 100vh);
   display: flex;
   align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: var(--full-height, 100vh);
   overflow: hidden;
   background-image: url('/Background Hero.png');
   background-size: cover;
@@ -41,7 +41,7 @@ const HeroSection = styled.section`
 
 const Container = styled(SectionContainer)`
   display: grid;
-  grid-template-columns: 45% 55%;
+  grid-template-columns: 0.45fr 0.55fr;
   gap: 6rem;
   align-items: center;
   justify-content: center;
@@ -63,9 +63,18 @@ const ImageColumn = styled.div`
   align-items: center;
   position: relative;
   width: 100%;
-  aspect-ratio: 1;
   max-width: 500px;
   margin: 0 auto;
+  
+  /* Fallback for browsers without aspect-ratio support */
+  &::before {
+    content: '';
+    display: block;
+    padding-top: 100%; /* 1:1 aspect ratio */
+  }
+  
+  /* Modern aspect-ratio for supported browsers */
+  aspect-ratio: 1;
 
   @media (max-width: 1400px) {
     max-width: 450px;

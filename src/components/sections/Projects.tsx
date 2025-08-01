@@ -15,6 +15,20 @@ const Section = styled(SectionWrapper)`
   position: relative;
   overflow: visible;
   z-index: 10;
+  /* Safari Mobile fixes - seamless sections */
+  margin: 0;
+  border: none;
+  outline: none;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  
+  /* Ensure no gaps on Safari Mobile */
+  @media (max-width: 768px) {
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
 `;
 
 // Custom container with reduced spacing for Projects section
