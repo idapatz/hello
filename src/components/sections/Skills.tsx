@@ -16,7 +16,6 @@ const Section = styled(SectionWrapper)`
   position: relative;
   z-index: 10;
   padding-top: 4rem;
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
   /* Safari Mobile fixes - seamless section connections */
   margin: 0;
   border: none;
