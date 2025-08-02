@@ -34,8 +34,13 @@ const Nav = styled.nav<NavProps>`
   -webkit-backdrop-filter: blur(10px);
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   
-  /* Safari Mobile fallback */
-  @media (max-width: 987px) {
+  /* Hide navigation for mobile (0-760px) */
+  @media (max-width: 760px) {
+    display: none;
+  }
+  
+  /* Small font for tablet range (760-993px) */
+  @media (max-width: 993px) and (min-width: 761px) {
     background: linear-gradient(
       145deg,
       rgba(63, 86, 69, 0.95),
@@ -97,11 +102,9 @@ const Logo = styled(motion.div)`
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   
-  @media (max-width: 987px) {
-    /* Ensure logo is always visible on Safari Mobile */
-    color: #ffffff !important;
-    font-weight: 500 !important;
-    text-shadow: none;
+  @media (max-width: 993px) and (min-width: 761px) {
+    /* Hide logo in tablet range */
+    display: none !important;
   }
 `;
 
@@ -112,48 +115,6 @@ const NavMenu = styled.ul<{ $isOpen: boolean }>`
   padding: 0;
   gap: 2.5rem;
   align-items: center;
-
-  @media (max-width: 987px) {
-    position: fixed;
-    top: 0;
-    right: 0; /* Changed back to right positioning */
-    width: 100%;
-    height: var(--full-height, 100vh);
-    z-index: 9998; /* Explicit z-index */
-    
-    /* Transform-based animation instead of right positioning */
-    transform: ${props => props.$isOpen ? 'translateX(0)' : 'translateX(100%)'};
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    
-    /* ✅ Sichtbarkeit & Interaktion */
-    visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
-    pointer-events: ${props => props.$isOpen ? 'auto' : 'none'};
-    opacity: ${props => props.$isOpen ? 1 : 0};
-    
-    /* Safari-specific backdrop filter with fallback */
-    background-color: rgba(40, 53, 44, 0.95); /* Fallback for Safari */
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    
-    /* Safari scroll behavior */
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    border-left: 1px solid rgba(249, 255, 251, 0.08);
-    
-    /* Safari touch optimization */
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
-    -webkit-tap-highlight-color: transparent;
-    
-    /* Prevent horizontal overflow */
-    overflow-x: hidden;
-  }
 `;
 
 const NavItem = styled.li`
@@ -188,17 +149,11 @@ const NavLink = styled(motion.a)`
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   align-items: center;
   
-  @media (max-width: 987px) {
-    /* Ensure NavLinks are always visible on Safari Mobile */
-    color: #ffffff !important;
-    font-weight: 600 !important;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    background-color: rgba(255, 255, 255, 0.1);
-    /* Safari touch optimization */
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
-    -webkit-tap-highlight-color: transparent;
+  @media (max-width: 993px) and (min-width: 761px) {
+    /* Smaller font size for tablet range */
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    letter-spacing: 0.15em;
   }
 
   &:hover {
@@ -206,11 +161,6 @@ const NavLink = styled(motion.a)`
     box-shadow: 
       0 0 20px rgba(214, 254, 161, 0.05),
       inset 0 0 20px rgba(214, 254, 161, 0.05);
-  }
-
-  @media (max-width: 987px) {
-    font-size: 1rem;
-    padding: 1rem 2rem;
   }
 `;
 
@@ -227,11 +177,6 @@ const MenuToggle = styled.button`
   user-select: none;
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
-
-  @media (max-width: 987px) {
-    display: flex;
-    z-index: 9999; /* Ensure button is always clickable */
-  }
 `;
 
 const MenuLine = styled(motion.div)`
@@ -262,15 +207,11 @@ const CTAButton = styled(motion.a)`
     transform: translateY(-2px);
   }
 
-  @media (max-width: 987px) {
-    margin-top: 2rem;
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    /* Safari touch optimization */
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
-    -webkit-tap-highlight-color: transparent;
+  @media (max-width: 993px) and (min-width: 761px) {
+    /* Smaller font size for tablet range */
+    font-size: 0.75rem;
+    padding: 0.6rem 1.2rem;
+    letter-spacing: 0.15em;
   }
 `;
 
