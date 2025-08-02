@@ -188,28 +188,28 @@ const LogoWrapper = styled.a`
 const Engagement = () => {
   const logos = [
     {
-      src: '/akb.png',
+      src: '/akb.png', // Corrected to .png
       alt: 'Arbeitskreis Börse',
       name: 'Arbeitskreis Börse',
-      url: 'https://arbeitskreis-boerse.de/'
+      url: 'https://akb-mainz.de/'
     },
     {
       src: '/finanzfrauen.png',
       alt: 'Finanzfrauen',
       name: 'Finanzfrauen',
-      url: 'https://finanzfrauen.de/'
+      url: 'https://www.linkedin.com/company/finanzfrauen-leipzig/posts/?feedView=all'
     },
     {
       src: '/berater.jpeg',
       alt: 'Berater e.V.',
       name: 'Berater e.V.',
-      url: 'https://berater-ev.de/'
+      url: 'https://berater-mainz.de/'
     },
     {
       src: '/young_founders_network_logo.jpeg',
       alt: 'Young Founders Network',
       name: 'Young Founders Network',
-      url: 'https://youngfoundersnetwork.de/'
+      url: 'https://youngfounders.network/'
     },
     {
       src: '/machn_festival_logo.jpeg',
