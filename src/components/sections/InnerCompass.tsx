@@ -137,10 +137,12 @@ const InnerCompass = () => {
   useEffect(() => {
     const ensureTextVisibility = () => {
       const paragraphs = document.querySelectorAll('#innerer-kompass p');
-      paragraphs.forEach(p => {
-        p.style.opacity = '1';
-        p.style.visibility = 'visible';
-        p.style.display = 'block';
+      paragraphs.forEach((p: Element) => {
+        if (p instanceof HTMLElement) {
+          p.style.opacity = '1';
+          p.style.visibility = 'visible';
+          p.style.display = 'block';
+        }
       });
     };
 
@@ -168,9 +170,11 @@ const InnerCompass = () => {
               // Fallback for Safari mobile - ensure text is visible
               if (typeof window !== 'undefined') {
                 const paragraphs = document.querySelectorAll('#innerer-kompass p');
-                paragraphs.forEach(p => {
-                  p.style.opacity = '1';
-                  p.style.visibility = 'visible';
+                paragraphs.forEach((p: Element) => {
+                  if (p instanceof HTMLElement) {
+                    p.style.opacity = '1';
+                    p.style.visibility = 'visible';
+                  }
                 });
               }
             }}
@@ -188,9 +192,11 @@ const InnerCompass = () => {
               // Fallback for Safari mobile - ensure text is visible
               if (typeof window !== 'undefined') {
                 const paragraphs = document.querySelectorAll('#innerer-kompass p');
-                paragraphs.forEach(p => {
-                  p.style.opacity = '1';
-                  p.style.visibility = 'visible';
+                paragraphs.forEach((p: Element) => {
+                  if (p instanceof HTMLElement) {
+                    p.style.opacity = '1';
+                    p.style.visibility = 'visible';
+                  }
                 });
               }
             }}
@@ -206,9 +212,11 @@ const InnerCompass = () => {
               // Fallback for Safari mobile - ensure text is visible
               if (typeof window !== 'undefined') {
                 const paragraphs = document.querySelectorAll('#innerer-kompass p');
-                paragraphs.forEach(p => {
-                  p.style.opacity = '1';
-                  p.style.visibility = 'visible';
+                paragraphs.forEach((p: Element) => {
+                  if (p instanceof HTMLElement) {
+                    p.style.opacity = '1';
+                    p.style.visibility = 'visible';
+                  }
                 });
               }
             }}
@@ -224,9 +232,11 @@ const InnerCompass = () => {
               // Fallback for Safari mobile - ensure text is visible
               if (typeof window !== 'undefined') {
                 const paragraphs = document.querySelectorAll('#innerer-kompass p');
-                paragraphs.forEach(p => {
-                  p.style.opacity = '1';
-                  p.style.visibility = 'visible';
+                paragraphs.forEach((p: Element) => {
+                  if (p instanceof HTMLElement) {
+                    p.style.opacity = '1';
+                    p.style.visibility = 'visible';
+                  }
                 });
               }
             }}
