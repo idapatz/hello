@@ -2,13 +2,8 @@
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { Instrument_Serif } from 'next/font/google';
+import Image from 'next/image';
 import { SectionContainer, SectionWrapper, SectionTitle } from '@/styles/commonStyles';
-
-const instrumentSerif = Instrument_Serif({
-  weight: '400',
-  subsets: ['latin'],
-});
 
 const VereinSection = styled(SectionWrapper)`
   background-color: #f3efea;
@@ -307,32 +302,6 @@ const Vereine = () => {
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 30 
-    },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut" as const
-      }
-    }
-  };
-
   return (
     <VereinSection id="vereine">
       <Container>
@@ -362,13 +331,11 @@ const Vereine = () => {
                   }}
                 >
                   <LogoContainer>
-                    <img
+                    <Image
                       src={verein.logo}
                       alt={`${verein.name} Logo`}
+                      fill
                       style={{ 
-                        display: 'block',
-                        width: '100%',
-                        height: '100%',
                         objectFit: 'contain',
                         /* Safari-specific fixes */
                         WebkitTransform: 'translateZ(0)',
@@ -380,7 +347,6 @@ const Vereine = () => {
                         imageRendering: '-webkit-optimize-contrast',
                         WebkitFontSmoothing: 'antialiased'
                       }}
-                      loading="eager"
                       onError={(e) => {
                         console.error('Image failed to load:', verein.logo);
                         e.currentTarget.style.display = 'none';

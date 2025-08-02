@@ -2,14 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { Instrument_Serif } from 'next/font/google';
-import Image from 'next/image';
 import { SectionContainer, SectionWrapper, SectionTitle } from '@/styles/commonStyles';
-
-const instrumentSerif = Instrument_Serif({ 
-  weight: '400',
-  subsets: ['latin']
-});
 
 const Section = styled(SectionWrapper)`
   background-color: #f3efea;
