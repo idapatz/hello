@@ -72,7 +72,7 @@ const UnderlinedText = styled.span`
     content: '';
     position: absolute;
     left: 0;
-    bottom: 3px;
+    bottom: 1px;
     width: 100%;
     height: 1px;
     background: #68675f;
@@ -107,7 +107,7 @@ const InnerCompass = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
             Ich glaube an Arbeit, die <UnderlinedText>Sinn</UnderlinedText> stiftet.<br />
-            An Unternehmen, die Menschen dienen – nicht umgekehrt.<br />
+            An Unternehmen, die Menschen dienen, nicht umgekehrt.<br />
             Und an Strukturen, die Klarheit, Verantwortung und <UnderlinedText>Verbindung</UnderlinedText> ermöglichen.
           </Paragraph>
 
@@ -116,7 +116,7 @@ const InnerCompass = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            Ich komme aus der Bildungswissenschaft, arbeite an der Schnittstelle von Strategie, Kommunikation und <UnderlinedText>Technologie</UnderlinedText> – und liebe es, komplexe Themen greifbar zu machen. Mein Antrieb: Strukturen schaffen, in denen Menschen gerne arbeiten und ihr <UnderlinedText>Potenzial</UnderlinedText> entfalten können.
+            Ich komme aus der Bildungswissenschaft, arbeite an der Schnittstelle von Strategie, Kommunikation und <UnderlinedText>Technologie</UnderlinedText> und liebe es, komplexe Themen greifbar zu machen. Mein Antrieb: Strukturen schaffen, in denen Menschen gerne arbeiten und ihr <UnderlinedText>Potenzial</UnderlinedText> entfalten können.
           </Paragraph>
 
           <Paragraph
@@ -124,7 +124,7 @@ const InnerCompass = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
           >
-            In den letzten Jahren habe ich Teams aufgebaut, <UnderlinedText>Prozesse</UnderlinedText> geschärft, Workshops konzipiert, Websites entwickelt und KI-Automationen so erklärt, dass sie verständlich und nutzbar werden. Dabei habe ich ein feines Gespür dafür entwickelt, wie Veränderung gelingt – mit Klarheit, <UnderlinedText>Haltung</UnderlinedText> und einem Blick für das, was Menschen wirklich brauchen.
+            In den letzten Jahren habe ich Teams aufgebaut, <UnderlinedText>Prozesse</UnderlinedText> geschärft, Workshops konzipiert, Websites entwickelt und KI-Automationen so erklärt, dass sie verständlich und nutzbar werden. Dabei habe ich ein feines Gespür dafür entwickelt, wie Veränderung gelingt: mit Klarheit, <UnderlinedText>Haltung</UnderlinedText> und einem Blick für das, was Menschen wirklich brauchen.
           </Paragraph>
 
           <Paragraph
