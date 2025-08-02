@@ -1,37 +1,49 @@
+'use client';
+
 import Hero from '@/components/sections/Hero';
 import Skills from '@/components/sections/Skills';
 import InnerCompass from '@/components/sections/InnerCompass';
 import Projects from '@/components/sections/Projects';
-import Vereine from '@/components/sections/Vereine';
+import Engagement from '@/components/sections/Engagement';
 import Contact from '@/components/sections/Contact';
 import Footer from '@/components/Footer';
+import { SectionGroup } from '@/styles/commonStyles';
+import styled from 'styled-components';
 
 const HeroSpacer = () => <div style={{ height: 'var(--full-height, 100vh)' }} />;
+
+// Beige background wrapper to prevent hero section from showing through Safari gaps
+const BeigeBackgroundWrapper = styled.div`
+  background-color: #f3efea; /* beige */
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  /* Safari Mobile fixes */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  isolation: isolate;
+`;
 
 export default function Home() {
   return (
     <main>
       <Hero />
       <HeroSpacer />
-      <div 
-        style={{
-          position: 'relative',
-          backgroundColor: '#f3efea',
-          width: '100%',
-          minHeight: '100vh',
-          zIndex: 1,
-          WebkitTransform: 'translateZ(0)',
-          transform: 'translateZ(0)',
-          WebkitBackfaceVisibility: 'hidden',
-          backfaceVisibility: 'hidden'
-        }}
-      >
-        <Skills />
-        <InnerCompass />
-        <Projects />
-        <Vereine />
-        <Contact />
-      </div>
+      
+      {/* Beige background wrapper to prevent hero section from showing through */}
+      <BeigeBackgroundWrapper>
+        {/* Gruppiere zusammenhängende Sections */}
+        <SectionGroup>
+          <Skills />
+          <InnerCompass />
+          <Projects />
+          <Engagement />
+          <Contact />
+        </SectionGroup>
+      </BeigeBackgroundWrapper>
+      
       <Footer />
     </main>
   );
