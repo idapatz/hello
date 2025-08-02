@@ -11,7 +11,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const VereinSection = styled(SectionWrapper)`
-  background-color: transparent;
+  background-color: #f3efea;
   overflow: hidden;
   position: relative;
   z-index: 10;

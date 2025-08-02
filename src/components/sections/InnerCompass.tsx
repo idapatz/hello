@@ -97,7 +97,7 @@ const UnderlinedText = styled.span`
 
 const InnerCompass = () => {
   return (
-    <Section>
+    <Section id="innerer-kompass">
       <Container>
         <Title>Innerer Kompass</Title>
         <TextContent>

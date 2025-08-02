@@ -7,11 +7,11 @@ import { useRouter, usePathname } from 'next/navigation';
 
 const Nav = styled.nav<NavProps>`
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
   z-index: 9999;
-  width: 100%;
+  width: calc(100% - 2rem);
   height: 80px;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
@@ -19,23 +19,33 @@ const Nav = styled.nav<NavProps>`
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   
-  /* Glassmorphism effect with green tint */
-  background: ${props => props.$scrolled ? 'rgba(63, 86, 69, 0.85)' : 'rgba(63, 86, 69, 0.65)'};
-  border-bottom: ${props => props.$scrolled 
-    ? '1px solid rgba(214, 254, 161, 0.25)'
-    : '1px solid rgba(63, 86, 69, 0.3)'};
+  /* 3D style like project cards with #3f5645 color */
+  background: linear-gradient(
+    145deg,
+    rgba(63, 86, 69, 0.95),
+    rgba(63, 86, 69, 0.85)
+  );
+  border: none;
+  border-radius: 1rem;
   box-shadow: ${props => props.$scrolled
-    ? '0 8px 32px rgba(63, 86, 69, 0.25), inset 0 0 32px rgba(214, 254, 161, 0.1)'
-    : '0 8px 32px rgba(63, 86, 69, 0.2), inset 0 0 32px rgba(63, 86, 69, 0.1)'};
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    ? '8px 8px 20px rgba(20, 25, 22, 0.6), -4px -4px 12px rgba(80, 110, 90, 0.3), inset 2px 2px 4px rgba(80, 110, 90, 0.2), inset -2px -2px 4px rgba(20, 25, 22, 0.3)'
+    : '6px 6px 15px rgba(20, 25, 22, 0.5), -3px -3px 8px rgba(80, 110, 90, 0.25), inset 1px 1px 3px rgba(80, 110, 90, 0.15), inset -1px -1px 3px rgba(20, 25, 22, 0.2)'};
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   
   /* Safari Mobile fallback */
-  @media (max-width: 768px) {
-    background: rgba(63, 86, 69, 0.85);
+  @media (max-width: 987px) {
+    background: linear-gradient(
+      145deg,
+      rgba(63, 86, 69, 0.95),
+      rgba(63, 86, 69, 0.85)
+    );
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    /* Ensure nav doesn't cause overflow */
+    max-width: calc(100vw - 2rem);
+    overflow: hidden;
   }
 
   &::before {
@@ -47,32 +57,34 @@ const Nav = styled.nav<NavProps>`
     bottom: 0;
     background: linear-gradient(
       145deg,
-      rgba(255, 255, 255, 0.4) 0%,
-      rgba(255, 255, 255, 0.1) 100%
+      rgba(80, 110, 90, 0.15),
+      rgba(20, 25, 22, 0.08)
     );
-    border-radius: 2px;
+    border-radius: 1rem;
     pointer-events: none;
+    opacity: 0.4;
   }
 `;
 
 const NavContainer = styled.div`
   max-width: 1440px;
   margin: 0 auto;
-  padding: 1rem 2.5rem;
+  padding: 1.5rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
   z-index: 9997; /* Explicit z-index */
+  height: 100%;
 `;
 
 const Logo = styled(motion.div)`
   font-family: "Instrument Serif", serif;
   font-size: 1.5rem;
   font-weight: 400;
-  color: #f9fffb !important; /* Force color for Safari Mobile */
+  color: #ffffff !important; /* White text for dark background */
   cursor: pointer;
-  text-shadow: 0 0 20px rgba(249, 255, 251, 0.2);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
   position: relative;
   /* Safari Mobile text rendering - CRITICAL */
   -webkit-font-smoothing: antialiased;
@@ -85,9 +97,9 @@ const Logo = styled(motion.div)`
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   
-  @media (max-width: 768px) {
+  @media (max-width: 987px) {
     /* Ensure logo is always visible on Safari Mobile */
-    color: #28352c !important;
+    color: #ffffff !important;
     font-weight: 500 !important;
     text-shadow: none;
   }
@@ -101,10 +113,10 @@ const NavMenu = styled.ul<{ $isOpen: boolean }>`
   gap: 2.5rem;
   align-items: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 987px) {
     position: fixed;
     top: 0;
-    left: 0; /* Changed from right positioning */
+    right: 0; /* Changed back to right positioning */
     width: 100%;
     height: var(--full-height, 100vh);
     z-index: 9998; /* Explicit z-index */
@@ -112,6 +124,11 @@ const NavMenu = styled.ul<{ $isOpen: boolean }>`
     /* Transform-based animation instead of right positioning */
     transform: ${props => props.$isOpen ? 'translateX(0)' : 'translateX(100%)'};
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* ✅ Sichtbarkeit & Interaktion */
+    visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
+    pointer-events: ${props => props.$isOpen ? 'auto' : 'none'};
+    opacity: ${props => props.$isOpen ? 1 : 0};
     
     /* Safari-specific backdrop filter with fallback */
     background-color: rgba(40, 53, 44, 0.95); /* Fallback for Safari */
@@ -133,6 +150,9 @@ const NavMenu = styled.ul<{ $isOpen: boolean }>`
     user-select: none;
     -webkit-touch-callout: none;
     -webkit-tap-highlight-color: transparent;
+    
+    /* Prevent horizontal overflow */
+    overflow-x: hidden;
   }
 `;
 
@@ -146,7 +166,7 @@ const NavLink = styled(motion.a)`
   font-family: "Raleway", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #f9fffb !important; /* Force color for Safari Mobile */
+  color: #ffffff !important; /* White text for dark background */
   text-decoration: none;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -165,15 +185,15 @@ const NavLink = styled(motion.a)`
   padding: 0.75rem 1rem;
   border-radius: 2rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  text-shadow: 0 0 20px rgba(249, 255, 251, 0.1);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   align-items: center;
   
-  @media (max-width: 768px) {
+  @media (max-width: 987px) {
     /* Ensure NavLinks are always visible on Safari Mobile */
-    color: #f9fffb !important;
+    color: #ffffff !important;
     font-weight: 600 !important;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    background-color: rgba(249, 255, 251, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
     /* Safari touch optimization */
     -webkit-user-select: none;
     user-select: none;
@@ -188,7 +208,7 @@ const NavLink = styled(motion.a)`
       inset 0 0 20px rgba(214, 254, 161, 0.05);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 987px) {
     font-size: 1rem;
     padding: 1rem 2rem;
   }
@@ -208,7 +228,7 @@ const MenuToggle = styled.button`
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
 
-  @media (max-width: 768px) {
+  @media (max-width: 987px) {
     display: flex;
     z-index: 9999; /* Ensure button is always clickable */
   }
@@ -217,7 +237,7 @@ const MenuToggle = styled.button`
 const MenuLine = styled(motion.div)`
   width: 25px;
   height: 2px;
-  background: #f9fffb;
+  background: #ffffff;
   border-radius: 2px;
   transform-origin: center;
 `;
@@ -242,7 +262,7 @@ const CTAButton = styled(motion.a)`
     transform: translateY(-2px);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 987px) {
     margin-top: 2rem;
     padding: 1rem 2rem;
     font-size: 1rem;
@@ -335,9 +355,9 @@ const Navigation = () => {
           <NavItem>
             <NavLink
               whileHover={{ y: -2 }}
-              onClick={() => navigateToSection('drive')}
+              onClick={() => navigateToSection('innerer-kompass')}
             >
-              Drive
+              Kompass
             </NavLink>
           </NavItem>
           <NavItem>
