@@ -33,6 +33,24 @@ const HeroSection = styled.section`
   z-index: 0;
   padding: 2rem 0;
   
+  /* Safari Mobile specific fixes */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  
+  /* Ensure proper viewport handling on mobile */
+  @media (max-width: 768px) {
+    min-height: 100vh;
+    height: 100vh;
+    /* Safari iOS viewport fix */
+    height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+    /* Prevent address bar issues */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
   & > * {
     position: relative;
     z-index: 1;
@@ -54,6 +72,16 @@ const Container = styled(SectionContainer)`
     grid-template-columns: 1fr;
     gap: 3rem;
     text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    gap: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    /* Ensure content fits in viewport */
+    min-height: 0;
+    max-height: 100vh;
+    overflow: visible;
   }
 `;
 
@@ -86,7 +114,13 @@ const ImageColumn = styled.div`
   }
 
   @media (max-width: 768px) {
-    max-width: 320px;
+    max-width: 280px;
+    /* Ensure image doesn't overflow viewport */
+    max-height: 40vh;
+    aspect-ratio: 1;
+    /* Safari mobile fixes */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 `;
 
