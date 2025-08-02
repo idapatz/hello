@@ -2,7 +2,6 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
 import { SectionWrapper, SectionContainer, SectionTitle } from '@/styles/commonStyles';
 
 const Section = styled(SectionWrapper)`
@@ -74,15 +73,16 @@ const LogoContainer = styled.div`
   
   /* Desktop Grid Layout */
   @media (min-width: 1024px) {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto auto;
-    gap: 6rem 4rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem;
     max-width: 1400px;
     width: 100%;
-    place-items: center;
-    align-content: space-between;
+    justify-content: center;
+    align-items: center;
     overflow: visible;
+    min-height: 0;
     
     /* Safari Mobile fixes */
     -webkit-transform: translateZ(0);
@@ -141,17 +141,6 @@ const LogoWrapper = styled.a`
   @media (max-width: 768px) {
     height: 120px;
     margin-bottom: 0;
-    
-    /* Mobile: Einspaltige Darstellung */
-    &:nth-child(1),
-    &:nth-child(2),
-    &:nth-child(3),
-    &:nth-child(4),
-    &:nth-child(5) {
-      grid-column: unset;
-      grid-row: unset;
-      justify-self: unset;
-    }
   }
   
   @media (min-width: 769px) and (max-width: 1023px) {
@@ -161,40 +150,33 @@ const LogoWrapper = styled.a`
   /* Desktop Grid Positioning */
   @media (min-width: 1024px) {
     height: 160px;
+    min-height: 0;
     
-    /* Young Founders Network - Spalte 1 */
-    &:nth-child(1) {
-      grid-column: 1;
-      grid-row: 1;
-      justify-self: center;
+    /* Flexbox Layout - alle Logos werden gleichmäßig verteilt */
+    flex: 1 1 auto;
+    min-width: 200px;
+    max-width: 300px;
+    overflow: visible;
+    
+    /* Desktop-spezifische Positionierung */
+    &.akb {
+      order: 1;
     }
     
-    /* machn Festival - Spalte 2-3 */
-    &:nth-child(2) {
-      grid-column: 2 / span 2;
-      grid-row: 1;
-      justify-self: center;
+    &.finanzfrauen {
+      order: 2;
     }
     
-    /* Finanzfrauen - Spalte 4 */
-    &:nth-child(3) {
-      grid-column: 4;
-      grid-row: 1;
-      justify-self: center;
+    &.berater {
+      order: 3;
     }
     
-    /* Berater e.V. - mittig unter Abstand zwischen Logo 1 und 2 */
-    &:nth-child(4) {
-      grid-column: 1 / span 2;
-      grid-row: 2;
-      justify-self: center;
+    &.yfn {
+      order: 4;
     }
     
-    /* Arbeitskreis Börse - mittig unter Abstand zwischen Logo 2 und 3 */
-    &:nth-child(5) {
-      grid-column: 3 / span 2;
-      grid-row: 2;
-      justify-self: center;
+    &.machn {
+      order: 5;
     }
   }
   
@@ -203,47 +185,13 @@ const LogoWrapper = styled.a`
   }
 `;
 
-const StyledImage = styled(Image)`
-  max-width: 140px;
-  max-height: 140px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  
-  @media (max-width: 768px) {
-    max-width: 120px;
-    max-height: 120px;
-  }
-  
-  @media (min-width: 769px) and (max-width: 1023px) {
-    max-width: 130px;
-    max-height: 130px;
-  }
-  
-  @media (min-width: 1024px) {
-    max-width: 160px;
-    max-height: 160px;
-  }
-  
-  @media (min-width: 1440px) {
-    max-width: 180px;
-    max-height: 180px;
-  }
-`;
-
 const Engagement = () => {
   const logos = [
     {
-      src: '/young_founders_network_logo.jpeg',
-      alt: 'Young Founders Network',
-      name: 'Young Founders Network',
-      url: 'https://youngfoundersnetwork.de/'
-    },
-    {
-      src: '/machn_festival_logo.jpeg',
-      alt: 'machn Festival',
-      name: 'machn Festival',
-      url: 'https://machn-festival.de/'
+      src: '/akb.png',
+      alt: 'Arbeitskreis Börse',
+      name: 'Arbeitskreis Börse',
+      url: 'https://arbeitskreis-boerse.de/'
     },
     {
       src: '/finanzfrauen.png',
@@ -258,10 +206,16 @@ const Engagement = () => {
       url: 'https://berater-ev.de/'
     },
     {
-      src: '/akb.jpg',
-      alt: 'Arbeitskreis Börse',
-      name: 'Arbeitskreis Börse',
-      url: 'https://arbeitskreis-boerse.de/'
+      src: '/young_founders_network_logo.jpeg',
+      alt: 'Young Founders Network',
+      name: 'Young Founders Network',
+      url: 'https://youngfoundersnetwork.de/'
+    },
+    {
+      src: '/machn_festival_logo.jpeg',
+      alt: 'machn Festival',
+      name: 'machn Festival',
+      url: 'https://machn-festival.de/'
     }
   ];
 
@@ -277,13 +231,29 @@ const Engagement = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Besuche ${logo.name} Website`}
+              className={
+                logo.name === 'Arbeitskreis Börse' ? 'akb' :
+                logo.name === 'Finanzfrauen' ? 'finanzfrauen' :
+                logo.name === 'Berater e.V.' ? 'berater' :
+                logo.name === 'Young Founders Network' ? 'yfn' :
+                logo.name === 'machn Festival' ? 'machn' : ''
+              }
             >
-              <StyledImage
+              <img
                 src={logo.src}
                 alt={logo.alt}
-                width={400}
-                height={120}
-                priority={index < 2}
+                style={{ 
+                  width: '140px',
+                  height: '140px',
+                  objectFit: 'contain',
+                  maxWidth: '100%'
+                }}
+                onError={(e) => {
+                  console.error(`Failed to load image: ${logo.src}`, e);
+                }}
+                onLoad={() => {
+                  console.log(`Successfully loaded: ${logo.src}`);
+                }}
               />
             </LogoWrapper>
           ))}
