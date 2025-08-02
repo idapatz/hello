@@ -11,18 +11,27 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const VereinSection = styled(SectionWrapper)`
-  background-color: #f3efea;
+  background-color: transparent;
   overflow: hidden;
   position: relative;
   z-index: 10;
   padding-top: 6rem;
-  /* Safari Mobile fixes - seamless sections */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  will-change: auto;
   margin: 0;
   border: none;
   outline: none;
+  
+  /* Safari-specific fixes */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  will-change: transform;
+  
+  /* Ensure proper rendering in Safari */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   
   @media (max-width: 1024px) {
     padding-top: 5rem;
@@ -30,11 +39,12 @@ const VereinSection = styled(SectionWrapper)`
   
   @media (max-width: 768px) {
     padding-top: 4rem;
-    /* Ensure no gaps on Safari Mobile */
+    /* Safari Mobile specific fixes */
     margin-bottom: 0;
     margin-top: 0;
     padding-left: 0;
     padding-right: 0;
+    -webkit-overflow-scrolling: touch;
   }
 `;
 
@@ -48,22 +58,24 @@ const Container = styled(SectionContainer)`
 
 const ContentWrapper = styled.div`
   width: 100%;
-  padding-left: 4rem;
-  padding-right: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: 6rem;
+  padding-right: 6rem;
   
   @media (max-width: 1400px) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+  
+  @media (max-width: 1024px) {
     padding-left: 3rem;
     padding-right: 3rem;
   }
   
-  @media (max-width: 1024px) {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-  
   @media (max-width: 768px) {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 `;
 
@@ -89,29 +101,50 @@ const Title = styled(SectionTitle)`
 
 const VereinGrid = styled.div`
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-  
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  gap: 4rem;
+  padding: 2rem 0;
+
   @media (min-width: 768px) {
-    /* Desktop: create the staggered layout with flexbox */
-    & > div:nth-child(1),
-    & > div:nth-child(2),
-    & > div:nth-child(3) {
-      /* First row - 3 items */
+    /* Desktop: Staggered grid layout */
+    & > div:nth-child(1) { /* Young Founders */
+      grid-column: 1 / 2;
+      grid-row: 1;
     }
     
-    & > div:nth-child(4),
-    & > div:nth-child(5) {
-      /* Second row - 2 items, will wrap naturally */
+    & > div:nth-child(2) { /* machn Festival */
+      grid-column: 2 / 4;
+      grid-row: 1;
+      justify-self: center;
+    }
+    
+    & > div:nth-child(3) { /* Finanzfrauen */
+      grid-column: 4 / 5;
+      grid-row: 1;
+    }
+    
+    & > div:nth-child(4) { /* Berater e.V. */
+      grid-column: 1 / 3;
+      grid-row: 2;
+      justify-self: center;
+    }
+    
+    & > div:nth-child(5) { /* Arbeitskreis Börse */
+      grid-column: 3 / 5;
+      grid-row: 2;
+      justify-self: center;
     }
   }
   
   @media (max-width: 767px) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 2rem;
+    
+    & > div {
+      grid-column: 1;
+    }
   }
 `;
 
@@ -153,18 +186,49 @@ const VereinCard = styled(motion.div)`
 `;
 
 const LogoContainer = styled.div`
-  width: 160px;
-  height: 160px;
+  width: 180px;
+  height: 180px;
   margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block; /* Safari fix */
+  position: relative; /* Safari fix */
   transition: all 0.3s ease;
-  border-radius: 8px;
   overflow: hidden;
+  background: transparent;
+  padding: 1rem;
+  
+  /* Safari-specific fixes */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
   
   &:hover {
-    box-shadow: 0 8px 25px rgba(104, 103, 95, 0.15);
+    transform: translateY(-2px);
+  }
+
+  /* Ensure consistent sizing across browsers */
+  & > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Safari-specific image fixes */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  @media (max-width: 1200px) {
+    width: 160px;
+    height: 160px;
+  }
+
+  @media (max-width: 768px) {
+    width: 140px;
+    height: 140px;
   }
 `;
 
@@ -302,17 +366,19 @@ const Vereine = () => {
                       src={verein.logo}
                       alt={`${verein.name} Logo`}
                       style={{ 
+                        display: 'block',
                         width: '100%',
                         height: '100%',
                         objectFit: 'contain',
-                        borderRadius: '4px',
-                        /* Safari Mobile compatibility */
-                        maxWidth: '100%',
-                        maxHeight: '100%',
-                        display: 'block',
-                        imageRendering: 'auto',
+                        /* Safari-specific fixes */
                         WebkitTransform: 'translateZ(0)',
-                        transform: 'translateZ(0)'
+                        transform: 'translateZ(0)',
+                        WebkitBackfaceVisibility: 'hidden',
+                        backfaceVisibility: 'hidden',
+                        mixBlendMode: 'multiply',
+                        /* Prevent image scaling issues */
+                        imageRendering: '-webkit-optimize-contrast',
+                        WebkitFontSmoothing: 'antialiased'
                       }}
                       loading="eager"
                       onError={(e) => {

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { SectionContainer, SectionWrapper, SectionTitle } from '@/styles/commonStyles';
 
 const Section = styled(SectionWrapper)`
-  background-color: #f3efea;
+  background-color: transparent;
   position: relative;
   z-index: 10;
   

@@ -1,12 +1,34 @@
+'use client';
+
 import styled from 'styled-components';
 
-// Common container for all sections with much more spacing
+// Wrapper für zusammenhängende Sections
+export const SectionGroup = styled.div`
+  position: relative;
+  width: 100%;
+  background-color: inherit;
+  /* Safari Mobile fixes */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-perspective: 1000;
+  /* Ensure sections stay connected */
+  isolation: isolate;
+  z-index: 1;
+`;
+
+// Common container for all sections
 export const SectionContainer = styled.div`
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   padding-left: 8rem;
   padding-right: 8rem;
+  /* Safari Mobile fixes */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
   
   @media (max-width: 1600px) {
     padding-left: 7rem;
@@ -41,13 +63,28 @@ export const SectionContainer = styled.div`
 
 // Common section wrapper
 export const SectionWrapper = styled.section`
-  padding: 3rem 0 6rem 0;
   position: relative;
   width: 100%;
-  /* Safari Mobile section gap fixes */
+  padding: 3rem 0 6rem 0;
   margin: 0;
+  /* Safari Mobile fixes */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Prevent subpixel rendering issues */
   border: none;
   outline: none;
+  background-color: inherit;
+  
+  /* Ensure proper stacking */
+  z-index: 1;
+  
+  /* Force GPU acceleration */
+  will-change: transform;
+  
+  /* Prevent margin collapse */
+  display: flow-root;
   
   @media (max-width: 1024px) {
     padding: 3rem 0 5.5rem 0;
@@ -55,17 +92,19 @@ export const SectionWrapper = styled.section`
   
   @media (max-width: 768px) {
     padding: 3rem 0 5rem 0;
+    /* Additional Safari Mobile fixes */
+    -webkit-overflow-scrolling: touch;
   }
 
   &:last-of-type {
     padding-bottom: 3rem;
   }
   
-  /* Ensure seamless connection between sections on Safari Mobile */
-  @media (max-width: 768px) {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    will-change: auto;
+  /* Ensure seamless connections */
+  &::before,
+  &::after {
+    content: '';
+    display: table;
   }
 `;
 
@@ -78,6 +117,9 @@ export const SectionTitle = styled.h2`
   padding: 0;
   color: inherit;
   line-height: 1.1;
+  /* Safari text rendering fixes */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   
   @media (max-width: 1400px) {
     font-size: 4rem;
@@ -93,4 +135,4 @@ export const SectionTitle = styled.h2`
     font-size: 2.5rem;
     margin: 0 0 1.5rem 0;
   }
-`; 
+`;

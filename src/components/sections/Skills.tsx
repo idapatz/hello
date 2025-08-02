@@ -12,13 +12,23 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const Section = styled(SectionWrapper)`
-  background-color: #f3efea;
+  background-color: transparent;
   position: relative;
   z-index: 10;
+  padding-top: 4rem;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
   /* Safari Mobile fixes - seamless section connections */
   margin: 0;
   border: none;
   outline: none;
+
+  @media (max-width: 1024px) {
+    padding-top: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 2rem;
+  }
 `;
 
 const Container = styled(SectionContainer)`
@@ -201,29 +211,7 @@ const CheckIcon = styled.div`
   }
 `;
 
-const Section = styled(SectionWrapper)`
-  background-color: #f3efea;
-  position: relative;
-  z-index: 10;
-  padding-top: 4rem;
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
 
-  @media (max-width: 1024px) {
-    padding-top: 3rem;
-  }
-
-  @media (max-width: 768px) {
-    padding-top: 2rem;
-  }
-`;
-
-const Container = styled(SectionContainer)`
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
 
 const Skills = () => {
   const skills = [

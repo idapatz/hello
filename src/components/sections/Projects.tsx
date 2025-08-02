@@ -11,7 +11,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const Section = styled(SectionWrapper)`
-  background-color: #f3efea;
+  background-color: transparent;
   position: relative;
   overflow: visible;
   z-index: 10;
