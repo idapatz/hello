@@ -19,8 +19,6 @@ const Section = styled(SectionWrapper)`
   margin: 0;
   border: none;
   outline: none;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
   
   /* Ensure no gaps on Safari Mobile */
   @media (max-width: 768px) {
