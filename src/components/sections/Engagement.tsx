@@ -14,10 +14,6 @@ const Section = styled(SectionWrapper)`
   margin: 0;
   border: none;
   outline: none;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   
   /* Ensure no gaps on Safari Mobile */
   @media (max-width: 768px) {
@@ -85,10 +81,6 @@ const LogoContainer = styled.div`
     min-height: 0;
     
     /* Safari Mobile fixes */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
     -webkit-overflow-scrolling: touch;
   }
   
@@ -111,24 +103,20 @@ const LogoWrapper = styled.a`
   overflow: visible;
   
   /* Safari Mobile fixes */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   opacity: 1;
   visibility: visible;
   display: flex;
   
   /* Hover effect */
   &:hover {
-    transform: scale(1.05) translateZ(0);
-    -webkit-transform: scale(1.05) translateZ(0);
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
   }
   
   /* Active state for better feedback */
   &:active {
-    transform: scale(1.02) translateZ(0);
-    -webkit-transform: scale(1.02) translateZ(0);
+    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
   }
   
   /* Focus state for accessibility */
