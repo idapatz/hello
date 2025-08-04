@@ -39,10 +39,8 @@ const Title = styled(SectionTitle)`
 const Grid = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: stretch;
-  width: 100%;
   gap: 2.5rem;
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
   
@@ -52,7 +50,7 @@ const Grid = styled.div`
   }
   
   @media (max-width: 900px) {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 2rem;
     max-width: 400px;
   }
@@ -75,7 +73,7 @@ const Card = styled.div`
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
-  height: auto
+  height: auto;
 
   @media (max-width: 768px) {
     padding: 1.5rem 2rem 2.5rem 2rem;
