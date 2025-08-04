@@ -37,10 +37,12 @@ const Title = styled(SectionTitle)`
 `;
 
 const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
   width: 100%;
+  gap: 2.5rem;
   max-width: 1000px;
   margin: 0 auto;
   
@@ -73,44 +75,12 @@ const Card = styled.div`
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
-  height: 100%;
+  height: auto
 
   @media (max-width: 768px) {
     padding: 1.5rem 2rem 2.5rem 2rem;
   }
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.1)
-    );
-    border-radius: 1.5rem;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 1px;
-    left: 1px;
-    right: 1px;
-    bottom: 1px;
-    border-radius: 1.5rem;
-    background: linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.4),
-      rgba(255, 255, 255, 0.1)
-    );
-    pointer-events: none;
-  }
 
   &:hover {
     transform: translateY(-3px) scale(1.01);
@@ -234,7 +204,7 @@ const Skills = () => {
   ];
 
   return (
-    <Section id="skills">
+    <Section id="skills" >
       <Container>
         <Title>Skills</Title>
         <Grid>
